@@ -77,12 +77,6 @@ var hmfullword;
 //Ready event
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
-	var timertest = setInterval(myTimer, 10000);
-	function myTimer() {
-		client.user.setGame('with Wesleu');
-		clearInterval(timertest);
-	}
-	//client.user.setGame("with Wesleu");
 });
 
 //NewMember event
@@ -926,36 +920,7 @@ client.on('message', msg => {
 	res = strmsg.match('!test');
 	if (res == '!test') {
 		channel.send('test');
-		/*var testmen = strmsg.match('!test (.+)');
-		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
-			var newthing = splitAt(1)(testmen);
-			testmen = newthing[1];
-		channel.send(testmen);*/
-		//channel.send('https://imgur.com/a/qRRBF');
-		/*var testmen = strmsg.match('> (.+)');
-		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
-			var newthing = splitAt(1)(testmen);
-			testmen = newthing[1];
-		channel.send(testmen);*/
-		/*test = setInterval(myTimer, 1000);
-		testmsg = emoji[0] + emoji[1] + emoji[0] + emoji[1] + emoji[0] + emoji[1];
-		var turn = true;
-		channel.send(testmsg).then((editthis)=>{
-			testmsg = editthis;
-		});
-		function myTimer() {
-			if (turn) {
-				testmsg.edit(emoji[1] + emoji[0] + emoji[1] + emoji[0] + emoji[1] + emoji[0]);
-			}
-			else {
-				testmsg.edit(emoji[0] + emoji[1] + emoji[0] + emoji[1] + emoji[0] + emoji[1]);
-			}
-			turn = !turn;
-		}*/
-		/*var newsetting = new Setting({ UserCount: 5 });
-		newsetting.save(function (err, newsetting) {
-		if (err) return console.error(err);
-		});*/	
+		client.user.setGame("with Wesleu");
 	}
 	
 	//Farm
