@@ -12,6 +12,7 @@
 	- xp till level up
 	- quiz
 	- total messages server/person
+	- randomfacts
 */
 
 var mongoose = require('mongoose');
@@ -907,6 +908,11 @@ client.on('message', msg => {
 			if (err) return handleError(err);
 			channel.send(setting.UserCount);
 		});
+	}
+	
+	//Ping
+	if (strmsg === '!ping') {
+		channel.send(client.ping);
 	}
 	
 	//Test
