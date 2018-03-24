@@ -13,6 +13,7 @@
 	- quiz
 	- total messages server/person
 	- randomfacts
+	- now playing <
 */
 
 var mongoose = require('mongoose');
@@ -76,6 +77,7 @@ var hmfullword;
 //Ready event
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setGame("with Wesleu");
 });
 
 //NewMember event
@@ -919,7 +921,6 @@ client.on('message', msg => {
 	res = strmsg.match('!test');
 	if (res == '!test') {
 		channel.send('test');
-		client.user.setGame('test');
 		/*var testmen = strmsg.match('!test (.+)');
 		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
 			var newthing = splitAt(1)(testmen);
