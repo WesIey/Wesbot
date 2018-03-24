@@ -919,6 +919,7 @@ client.on('message', msg => {
 	res = strmsg.match('!test');
 	if (res == '!test') {
 		channel.send('test');
+		client.user.setGame('test');
 		/*var testmen = strmsg.match('!test (.+)');
 		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
 			var newthing = splitAt(1)(testmen);
