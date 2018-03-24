@@ -1,0 +1,28 @@
+{
+	"name": "Wesbot",
+	"version": "1.0.0",
+	"description": "Bestest bot",
+	"main": "bot.js",
+	"author": "Wesley",
+	"dependencies": {
+		"discord.io": "^2.5.3",
+		"discord.js": "^11.3.2",
+		"heroku": "^0.2.0",
+		"mongodb": "^3.0.4",
+		"mongoose": "^5.0.11",
+		"winston": "^2.4.1"
+	},
+	"engines": {
+		"node": "8.x",
+		"npm": "*"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/WesIey/Wesbot.git"
+	},
+	"scripts": {
+		"start": "node bot.js"
+	},
+	"license": "MIT",
+	"homepage": "https://github.com/WesIey/Wesbot#readme"
+}
