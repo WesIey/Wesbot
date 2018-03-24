@@ -91,7 +91,7 @@ client.on('message', msg => {
 //NewMesage event
 client.on('message', msg => {
 	channel = msg.channel;
-	var strmsg = msg.content;
+	var strmsg = msg.content.toLowerCase();
 	
 	//Xpgain
 	if (msg.author.username != 'Wesbot') {
@@ -624,7 +624,7 @@ client.on('message', msg => {
 	}
 	
 	//Bal
-	if (msg.content === '!bal') {
+	if (strmsg === '!bal') {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 		if (err) return handleError(err);
 			channel.send({embed: {
