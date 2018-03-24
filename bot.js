@@ -618,6 +618,11 @@ client.on('message', msg => {
 			newuser.save(function (err, newuser) {
 				if (err) return console.error(err);
 			});
+			Setting.findOne({}, function (err, setting) {
+				if (err) return handleError(err);
+				setting.UserCount = Number(setting.UserCount) + 1;
+				setting.save();
+			});
 		}
 		}
 		else { channel.send("No permission");}
