@@ -77,6 +77,7 @@ var hmfullword;
 //Ready event
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
+	client.user.setPresence({ status: 'online', game: { name: 'with Wesleu' } });
 });
 
 //NewMember event
@@ -920,7 +921,6 @@ client.on('message', msg => {
 	res = strmsg.match('!test');
 	if (res == '!test') {
 		channel.send('test');
-		client.user.setPresence({ status: 'online', game: { name: 'with Wesleu' } });
 	}
 	
 	//Farm
