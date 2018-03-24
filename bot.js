@@ -2,13 +2,13 @@
 	- rob players
 	- upgradable farm
 	- hm against someone <player chooses word
-	- hl max bet,
 	- blackjack
 	- eco set/reset
 	- bal <player
 	- level <player
 	- leveltop
 	- shop? <level/bal required
+	- combine bal and level into !stats
 */
 
 var mongoose = require('mongoose');
@@ -412,51 +412,54 @@ client.on('message', msg => {
 			channel.send("Please enter a bet when using this command");
 		}
 		else {
-		var thing = strmsg.match('l (.+)');
-		if (msg.author.username == "Wesbot") {
-		}
-		else {
-			const splitAt = index => x => [x.slice(0, index), x.slice(index)]
-			var newthing = splitAt(1)(thing);
-			hlbet = newthing[1];
-		}
-		if (hlbet >= 1) {
-		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
-		if (err) return handleError(err);
-			if(user.Balance >= hlbet) {
-				HigherLowerNr1 = Math.floor((Math.random() * 10) + 1);
-		hl = true;
-		hlAuthor = msg.author;
-		hlmsg = {embed: {
-		color: 3447003,
-		author: {
-		name: client.user.username,
-		icon_url: client.user.avatarURL
-		},
-		title: "Higher/lower",
-		description: "Bet: $" + Number(hlbet).toLocaleString(),
-		fields: [{
-        name: "First number",
-        value: HigherLowerNr1
-		},
-		{
-        name: "Will the next number be higher or lower?",
-        value: "Answer by typing higher or lower"
-		}
-		]
-		}};
-		channel.send(hlmsg).then((editthis)=>{
-			hlmsg = editthis;
-		});
+			var thing = strmsg.match('l (.+)');
+			if (msg.author.username == "Wesbot") {
 			}
 			else {
-				channel.send(":x: You can't afford this bet");
+				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
+				var newthing = splitAt(1)(thing);
+				hlbet = newthing[1];
 			}
-		});
-		}
-		else {
-			channel.send(":x: Bet has to be 1+");
-		}
+			if (hlbet >= 1) {
+				if (hlbet <= 100) {
+					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
+						if (err) return handleError(err);
+						if(user.Balance >= hlbet) {
+							HigherLowerNr1 = Math.floor((Math.random() * 10) + 1);
+							hl = true;
+							hlAuthor = msg.author;
+							hlmsg = {embed: {
+								color: 3447003,
+								author: {
+									name: client.user.username,
+									icon_url: client.user.avatarURL
+								},
+								title: "Higher/lower",
+								description: "Bet: $" + Number(hlbet).toLocaleString(),
+								fields: [{
+									name: "First number",
+									value: HigherLowerNr1
+								}, {
+									name: "Will the next number be higher or lower?",
+									value: "Answer by typing higher or lower"
+								}]
+							}};
+							channel.send(hlmsg).then((editthis)=>{
+								hlmsg = editthis;
+							});
+						}
+						else {
+							channel.send(":x: You can't afford this bet");
+						}
+					});
+				}
+				else {
+					channel.send(":x: Max. bet is $100");
+				}
+			}
+			else {
+				channel.send(":x: Bet has to be $1+");
+			}
 		}
 	}
 	
@@ -845,34 +848,24 @@ client.on('message', msg => {
 		},
 		title: "Commands",
 		fields: [{
-        name: "!help",
-        value: "Lists all commands"
-		},
-		{
-        name: "!hl <bet>",
-        value: "Activates the higher lower minigame"
-		},
-		{
+			name: "!hl <bet>",
+			value: "Activates the higher lower minigame"
+		}, {
 			name: "!insult <@user>",
 			value: "Insults the mentioned user"
-		},
-		{
+		}, {
 			name: "!bal",
 			value: "Returns your balance"
-		},
-		{
+		}, {
 			name: "!baltop",
 			value: "Returns top 5 balances"
-		},
-		{
+		}, {
 			name: "!hf <@user> <bet>",
 			value: "Requests a headflip against the mentioned player"
-		},
-		{
+		}, {
 			name: "!level",
 			value: "Returns your current level"
-		},
-		{
+		}, {
 			name: "!hm",
 			value: "Starts a game of hangman"
 		}
