@@ -1,4 +1,4 @@
-//Notes: rob players, mine, upgrade mine, hm display correct word on lose, hm guess full word, hm against someone <player chooses word
+//Notes: rob players, mine, upgrade mine, hm display correct word on lose, hm guess full word, hm against someone <player chooses word, hl max bet, blackjack
 
 var mongoose = require('mongoose');
   
@@ -630,7 +630,8 @@ client.on('message', msg => {
 			channel.send({embed: {
 				color: 3447003,
 				author: {
-					name: user.Name
+					name: user.Name,
+					icon_url: msg.author.avatarURL
 				},
 				title: ':moneybag: Balance: $' + user.Balance.toLocaleString()
 			}});
@@ -972,7 +973,6 @@ client.on('message', msg => {
 		//clearInterval(test);
 	}
 
-	
 });
 
 client.login(process.env.CLIENT_TOKEN);
