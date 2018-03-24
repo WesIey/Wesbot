@@ -617,6 +617,7 @@ client.on('message', msg => {
 			var newuser = new User({ UserID: userid, Name: name, Balance: 100 });
 			newuser.save(function (err, newuser) {
 				if (err) return console.error(err);
+				channel.send(":white_check_mark: User " + mentions[0].username + " has been registered!");
 			});
 			Setting.findOne({}, function (err, setting) {
 				if (err) return handleError(err);
