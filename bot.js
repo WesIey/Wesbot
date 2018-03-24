@@ -1,7 +1,7 @@
 /*To-do:
 	- rob players
 	- upgradable farm
-	- hm guess full word, hm against someone <player chooses word
+	- hm against someone <player chooses word
 	- hl max bet,
 	- blackjack
 	- eco set/reset
@@ -67,6 +67,7 @@ var hmguess = ["default"]
 var mistakes;
 var hmmsg;
 var channel;
+var hmfullword;
 
 //Ready event
 client.on('ready', () => {
@@ -727,7 +728,7 @@ client.on('message', msg => {
 	
 	//Hangman
 	res = strmsg.match('[a-z]');
-	if (hmactive && hmchannel == channel && msg.author.username != 'Wesbot' && res == msg.content) {
+	if (hmactive && hmchannel == channel && msg.author.username != 'Wesbot' && res == strmsg) {
 		var stringske = "";
 		var correct = false;
 		var allSolved = true;
@@ -749,29 +750,21 @@ client.on('message', msg => {
 			}
 		}
 		if (allSolved) {
-			var correctWord = "";
-			for (i = 0; i < hmword.length; i++) {
-				correctWord += hmword[i];
-			}
 			hmactive = false;
 			hmmsg.edit({embed: {
 				color: 3447003,
 				author: {
 					name: "Hangman"
 				},
-				title: ":white_check_mark: You guessed the word: " + correctWord
+				title: ":white_check_mark: You guessed the word: " + hmfullword
 			}});
 		}
 		if (!correct) {
 			mistakes++;
 		}
 		if (mistakes == 6 && !allSolved) {
-			var correctWord = "";
-			for (i = 0; i < hmword.length; i++) {
-				correctWord += hmword[i];
-			}
 			const embed = new Discord.RichEmbed()
-			.setTitle(":x: RIP, you failed to guess the word: " + correctWord)
+			.setTitle(":x: RIP, you failed to guess the word: " + hmfullword)
 			.setAuthor("Hangman", "")
 			.setColor(3447003)
 			.setImage(hm[mistakes])
@@ -797,6 +790,16 @@ client.on('message', msg => {
 		}
 		msg.delete(3000);
 	}
+	else if (hmactive && hmchannel == channel && msg.author.username != 'Wesbot' && strmsg == hmfullword) {
+		hmactive = false;
+		hmmsg.edit({embed: {
+			color: 3447003,
+			author: {
+				name: "Hangman"
+			},
+			title: ":white_check_mark: You guessed the word: " + hmfullword
+		}});
+	}
 	if (strmsg === '!hm') {
 		if (!hmactive) {
 			hmactive = true;
@@ -804,6 +807,7 @@ client.on('message', msg => {
 				if (err) return handleError(err);
 				var randIndex = Math.floor((Math.random() * setting.Words) + 0);
 				Word.findOne({ 'WordNr': randIndex }, function (err, word) {
+					hmfullword = word.Wordd;
 					hmword = word.Wordd.split("");
 					hmactive = true;
 					hmchannel = channel;
