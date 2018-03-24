@@ -185,7 +185,7 @@ client.on('message', msg => {
 	var res = strmsg.match('!hl');
 	if (hl) {
 		if (msg.author === hlAuthor) {
-			if (msg.content === 'higher') {
+			if (strmsg === 'higher') {
 				HigherLowerNr2 = Math.floor((Math.random() * 10) + 1);
 				if (HigherLowerNr2 > HigherLowerNr1) {
 					hlmsg.edit({embed: {
@@ -286,7 +286,7 @@ client.on('message', msg => {
 					hl = false;
 				}
 			}
-			else if (msg.content === 'lower') {
+			else if (strmsg === 'lower') {
 				HigherLowerNr2 = Math.floor((Math.random() * 10) + 1);
 				if (HigherLowerNr2 < HigherLowerNr1) {
 					hlmsg.edit({embed: {
@@ -638,7 +638,7 @@ client.on('message', msg => {
 	}
 	
 	//Baltop
-	if (msg.content === '!baltop') {
+	if (strmsg === '!baltop') {
 		User.find({}, function (err, users) {
 			Setting.findOne({}, function (err, setting) {
 				if (err) return handleError(err);
@@ -693,7 +693,7 @@ client.on('message', msg => {
 	}
 	
 	//Level
-	if (msg.content === '!level') {
+	if (strmsg === '!level') {
 		User.findOne({ UserID: msg.author.id }, function (err, user) {
 			if (err) return handleError(err);
 			channel.send({embed: {
@@ -715,7 +715,7 @@ client.on('message', msg => {
 		var allSolved = true;
 		for (i = 0; i < hmword.length; i++) {
 			if (hmguess[i] == "-") {
-				if (msg.content == hmword[i]) {
+				if (strmsg == hmword[i]) {
 					//Correct guess
 					hmguess[i] = hmword[i];
 					stringske += hmword[i] + " ";
@@ -771,7 +771,7 @@ client.on('message', msg => {
 		}
 		msg.delete(3000);
 	}
-	if (msg.content === '!hm') {
+	if (strmsg === '!hm') {
 		if (!hmactive) {
 			hmactive = true;
 			Setting.findOne({}, function (err, setting) {
@@ -806,7 +806,7 @@ client.on('message', msg => {
 	}
 	
 	//Help
-	if (msg.content === '!help') {
+	if (strmsg === '!help') {
 		channel.send({embed: {
 		color: 3447003,
 		author: {
@@ -876,7 +876,7 @@ client.on('message', msg => {
 	}
 	
 	//Users
-	if (msg.content === '!users') {
+	if (strmsg === '!users') {
 		Setting.findOne({}, function (err, setting) {
 			if (err) return handleError(err);
 			channel.send(setting.UserCount);
@@ -920,7 +920,7 @@ client.on('message', msg => {
 	}
 	
 	//Farm
-	if (msg.content == '!farm') {
+	if (strmsg == '!farm') {
 		/*if (msg.author.username == 'Wesleu') {
 			channel.send({embed: {
 		color: 3447003,
@@ -968,7 +968,7 @@ client.on('message', msg => {
 	}
 	
 	//Stop
-	if (msg.content === '!stop') {
+	if (strmsg === '!stop') {
 		//clearInterval(test);
 	}
 
