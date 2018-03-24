@@ -912,7 +912,7 @@ client.on('message', msg => {
 	
 	//Ping
 	if (strmsg === '!ping') {
-		channel.send(client.ping);
+		channel.send(client.ping + "ms");
 	}
 	
 	//Test
