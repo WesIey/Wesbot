@@ -76,8 +76,13 @@ var hmfullword;
 
 //Ready event
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame("with Wesleu");
+	console.log(`Logged in as ${client.user.tag}!`);
+	var timertest = setInterval(myTimer, 10000);
+	function myTimer() {
+		client.user.setGame('with Wesleu');
+		clearInterval(timertest);
+	}
+	//client.user.setGame("with Wesleu");
 });
 
 //NewMember event
