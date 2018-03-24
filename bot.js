@@ -3,12 +3,15 @@
 	- upgradable farm
 	- hm against someone <player chooses word
 	- blackjack
-	- eco set/reset
+	- eco set
 	- bal <player
 	- level <player
 	- leveltop
 	- shop? <level/bal required
 	- combine bal and level into !stats
+	- xp till level up
+	- quiz
+	- total messages server/person
 */
 
 var mongoose = require('mongoose');
@@ -203,8 +206,8 @@ client.on('message', msg => {
 					hlmsg.edit({embed: {
 						color: 3447003,
 						author: {
-							name: client.user.username,
-							icon_url: client.user.avatarURL
+							name: msg.author.username,
+							icon_url: msg.author.avatarURL
 						},
 						title: "Higher/lower",
 						description: "Bet: $" + Number(hlbet).toLocaleString(),
@@ -237,8 +240,8 @@ client.on('message', msg => {
 					hlmsg.edit({embed: {
 						color: 3447003,
 						author: {
-							name: client.user.username,
-							icon_url: client.user.avatarURL
+							name: msg.author.username,
+							icon_url: msg.author.avatarURL
 						},
 						title: "Higher/lower",
 						description: "Bet: $" + Number(hlbet).toLocaleString(),
@@ -272,8 +275,8 @@ client.on('message', msg => {
 					hlmsg.edit({embed: {
 						color: 3447003,
 						author: {
-							name: client.user.username,
-							icon_url: client.user.avatarURL
+							name: msg.author.username,
+							icon_url: msg.author.avatarURL
 						},
 						title: "Higher/lower",
 						description: "Bet: $" + Number(hlbet).toLocaleString(),
@@ -304,8 +307,8 @@ client.on('message', msg => {
 					hlmsg.edit({embed: {
 						color: 3447003,
 						author: {
-							name: client.user.username,
-							icon_url: client.user.avatarURL
+							name: msg.author.username,
+							icon_url: msg.author.avatarURL
 						},
 						title: "Higher/lower",
 						description: "Bet: $" + Number(hlbet).toLocaleString(),
@@ -339,8 +342,8 @@ client.on('message', msg => {
 					hlmsg.edit({embed: {
 						color: 3447003,
 						author: {
-							name: client.user.username,
-							icon_url: client.user.avatarURL
+							name: msg.author.username,
+							icon_url: msg.author.avatarURL
 						},
 						title: "Higher/lower",
 						description: "Bet: $" + Number(hlbet).toLocaleString(),
@@ -373,8 +376,8 @@ client.on('message', msg => {
 					hlmsg.edit({embed: {
 						color: 3447003,
 						author: {
-							name: client.user.username,
-							icon_url: client.user.avatarURL
+							name: msg.author.username,
+							icon_url: msg.author.avatarURL
 						},
 						title: "Higher/lower",
 						description: "Bet: $" + Number(hlbet).toLocaleString(),
@@ -431,8 +434,8 @@ client.on('message', msg => {
 							hlmsg = {embed: {
 								color: 3447003,
 								author: {
-									name: client.user.username,
-									icon_url: client.user.avatarURL
+									name: msg.author.username,
+									icon_url: msg.author.avatarURL
 								},
 								title: "Higher/lower",
 								description: "Bet: $" + Number(hlbet).toLocaleString(),
