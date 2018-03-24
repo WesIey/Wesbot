@@ -920,7 +920,7 @@ client.on('message', msg => {
 	res = strmsg.match('!test');
 	if (res == '!test') {
 		channel.send('test');
-		client.user.setGame("with Wesleu");
+		client.user.setPresence({ status: 'online', game: { name: 'with Wesleu' } });
 	}
 	
 	//Farm
