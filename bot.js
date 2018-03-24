@@ -1,4 +1,15 @@
-//Notes: rob players, mine, upgrade mine, hm display correct word on lose, hm guess full word, hm against someone <player chooses word, hl max bet, blackjack
+/*To-do:
+	- rob players
+	- upgradable farm
+	- hm guess full word, hm against someone <player chooses word
+	- hl max bet,
+	- blackjack
+	- eco set/reset
+	- bal <player
+	- level <player
+	- leveltop
+	- shop? <level/bal required
+*/
 
 var mongoose = require('mongoose');
   
@@ -738,21 +749,29 @@ client.on('message', msg => {
 			}
 		}
 		if (allSolved) {
+			var correctWord = "";
+			for (i = 0; i < hmword.length; i++) {
+				correctWord += hmword[i];
+			}
 			hmactive = false;
 			hmmsg.edit({embed: {
 				color: 3447003,
 				author: {
 					name: "Hangman"
 				},
-				title: ":white_check_mark: You guessed the word: " + stringske
+				title: ":white_check_mark: You guessed the word: " + correctWord
 			}});
 		}
 		if (!correct) {
 			mistakes++;
 		}
 		if (mistakes == 6 && !allSolved) {
+			var correctWord = "";
+			for (i = 0; i < hmword.length; i++) {
+				correctWord += hmword[i];
+			}
 			const embed = new Discord.RichEmbed()
-			.setTitle(":x: RIP, you failed to guess the word!")
+			.setTitle(":x: RIP, you failed to guess the word: " + correctWord)
 			.setAuthor("Hangman", "")
 			.setColor(3447003)
 			.setImage(hm[mistakes])
