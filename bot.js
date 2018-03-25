@@ -659,7 +659,7 @@ client.on('message', msg => {
 		else { channel.send("No permission");}
 	}
 	
-	if (strmsg === '!stats') {
+	/*if (strmsg === '!stats') {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 			channel.send({embed: {
 				color: 3447003,
@@ -677,7 +677,7 @@ client.on('message', msg => {
 				]
 			}});
 		});
-	}
+	}*/
 	
 	//Bal
 	if (strmsg === '!bal') {
