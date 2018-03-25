@@ -857,6 +857,7 @@ client.on('message', msg => {
 	//Eco
 	res = strmsg.match('!eco set');
 	if (res == '!eco set') {
+		if (msg.author == '<@323890009696370688>') {
 		if (strmsg == '!eco set') {
 			channel.send(":x: Please enter a value");
 		}
@@ -877,6 +878,10 @@ client.on('message', msg => {
 					channel.send("All balances set to $" + value);
 				});
 			}
+		}
+		}
+		else {
+			channel.send(":x: Permission denied");
 		}
 	}
 	
