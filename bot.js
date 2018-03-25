@@ -15,6 +15,7 @@
 	- randomfacts
 	- now playing <
 	- hl emoji selection
+	- hl emoji numbers
 	- bank
 	- delete errors/causes, hl answer
 */
@@ -853,6 +854,24 @@ client.on('message', msg => {
 		}
 	}
 	
+	//Play
+	res = strmsg.match('!play');
+	if (res == '!play') {
+		if (strmsg != '!play') {
+			var thing = strmsg.match('!play (.+)');
+			if (msg.author.username == "Wesbot") {
+			}
+			else {
+				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
+				var newthing = splitAt(1)(thing);
+				var value = newthing[1];
+				client.user.setPresence({ status: 'online', game: { name: value } });
+			}
+		}
+		else {
+			channel.send(":x: You have to enter a game name");
+		}
+	}
 	
 	//Eco
 	res = strmsg.match('!eco set');
