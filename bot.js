@@ -16,7 +16,7 @@
 	- now playing <
 	- hl emoji selection
 	- bank
-	- delete errors/causes
+	- delete errors/causes, hl answer
 */
 
 var mongoose = require('mongoose');
@@ -853,7 +853,7 @@ client.on('message', msg => {
 		}
 	}
 	
-	/*
+	
 	//Eco
 	res = strmsg.match('!eco set');
 	if (res == '!eco set') {
@@ -879,7 +879,7 @@ client.on('message', msg => {
 			}
 		}
 	}
-	*/
+	
 	
 	//Help
 	if (strmsg === '!help') {
