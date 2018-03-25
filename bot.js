@@ -1029,6 +1029,9 @@ client.on('message', msg => {
 			xhr.send();
 		};
 		 //'&cs=76nxdxIJ02AAA&callback=ProcessReply',
+		 if (cs === undefined) {
+			 cs = "0";
+		 }
 		getJSON('http://www.cleverbot.com/getreply?key=' + process.env.CLEVERBOT_KEY + '&input=' + value + '&cs=' + cs,
 		function(err, data) {
 			if (err !== null) {
