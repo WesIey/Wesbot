@@ -1021,7 +1021,7 @@ client.on('message', msg => {
 	//AI
 	//res = strmsg.match('!wes');
 	//if (res == '!wes') {
-	if (convo) {
+	if (convo && strmsg != '!convo') {
 		if (msg.author.username != 'Wesbot') {
 		var cleverMessage = "";
 		/*var thing = strmsg.match('!wes (.+)');
