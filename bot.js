@@ -222,12 +222,12 @@ client.on('message', msg => {
 							value: HigherLowerNr1
 							},
 							{
-							name: "Second number",
-							value: HigherLowerNr2
+							name: "Your guess",
+							value: "Higher"
 							},
 							{
-							name: "Your answer",
-							value: "Higher"
+							name: "Second number",
+							value: HigherLowerNr2
 							},
 							{
 							name: HigherLowerNr2 + ' is higher than ' + HigherLowerNr1,
@@ -257,12 +257,12 @@ client.on('message', msg => {
 							value: HigherLowerNr1
 							},
 							{
-							name: "Second number",
-							value: HigherLowerNr2
+							name: "Your guess",
+							value: "Higher"
 							},
 							{
-							name: "Your answer",
-							value: "Higher"
+							name: "Second number",
+							value: HigherLowerNr2
 							},
 							{
 							name: HigherLowerNr2 + ' is lower than ' + HigherLowerNr1,
@@ -293,12 +293,12 @@ client.on('message', msg => {
 							value: HigherLowerNr1
 							},
 							{
-							name: "Second number",
-							value: HigherLowerNr2
+							name: "Your guess",
+							value: "Higher"
 							},
 							{
-							name: "Your answer",
-							value: "Higher"
+							name: "Second number",
+							value: HigherLowerNr2
 							},
 							{
 							name: HigherLowerNr2 + ' equals ' + HigherLowerNr1,
@@ -326,12 +326,12 @@ client.on('message', msg => {
 							value: HigherLowerNr1
 							},
 							{
-							name: "Second number",
-							value: HigherLowerNr2
+							name: "Your guess",
+							value: "Lower"
 							},
 							{
-							name: "Your answer",
-							value: "Lower"
+							name: "Second number",
+							value: HigherLowerNr2
 							},
 							{
 							name: HigherLowerNr2 + ' is lower than ' + HigherLowerNr1,
@@ -362,12 +362,12 @@ client.on('message', msg => {
 							value: HigherLowerNr1
 							},
 							{
-							name: "Second number",
-							value: HigherLowerNr2
+							name: "Your guess",
+							value: "Lower"
 							},
 							{
-							name: "Your answer",
-							value: "Lower"
+							name: "Second number",
+							value: HigherLowerNr2
 							},
 							{
 							name: HigherLowerNr2 + ' is higher than ' + HigherLowerNr1,
@@ -397,12 +397,12 @@ client.on('message', msg => {
 							value: HigherLowerNr1
 							},
 							{
-							name: "Second number",
-							value: HigherLowerNr2
+							name: "Your guess",
+							value: "Lower"
 							},
 							{
-							name: "Your answer",
-							value: "Lower"
+							name: "Second number",
+							value: HigherLowerNr2
 							},
 							{
 							name: HigherLowerNr2 + ' equals ' + HigherLowerNr1,
