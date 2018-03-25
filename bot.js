@@ -659,7 +659,7 @@ client.on('message', msg => {
 		else { channel.send("No permission");}
 	}
 	
-	/*if (strmsg === '!stats') {
+	if (strmsg === '!stats') {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 			channel.send({embed: {
 				color: 3447003,
@@ -669,15 +669,17 @@ client.on('message', msg => {
 				},
 				title: ':moneybag: Balance',
 				description: '$' + user.Balance.toLocaleString(),
-				fields[{
+				fields: [{
 					name: 'Level',
 					value: user.Level
+				}, {
+					name: 'Messages',
+					value: user.Xp
 				}
-					
 				]
 			}});
 		});
-	}*/
+	}
 	
 	//Bal
 	if (strmsg === '!bal') {
