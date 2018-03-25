@@ -14,6 +14,9 @@
 	- total messages server/person
 	- randomfacts
 	- now playing <
+	- hl emoji selection
+	- bank
+	- delete errors/causes
 */
 
 var mongoose = require('mongoose');
@@ -232,6 +235,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
+					msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 						if (err) channel.send('Error');
@@ -266,6 +270,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
+					msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 						if (err) return handleError(err);
@@ -301,6 +306,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
+					msg.delete();
 					hl = false;
 				}
 			}
@@ -333,6 +339,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
+					msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 						if (err) return handleError(err);
@@ -368,6 +375,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
+					msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 		if (err) return handleError(err);
@@ -402,6 +410,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
+					msg.delete();
 					hl = false;
 				}
 			}
@@ -410,11 +419,11 @@ client.on('message', msg => {
 			}
 		}
 		else {
-			//Already someone playing
+			channel.send(":x: There is already someone playing");
 		}
 	}
 	else if (res == '!hl') {
-		if (msg.content === '!hl') {
+		if (strmsg === '!hl') {
 			channel.send("Please enter a bet when using this command");
 		}
 		else {
@@ -841,6 +850,32 @@ client.on('message', msg => {
 		}
 		else {
 			//already active
+		}
+	}
+	
+	//Eco
+	res = strmsg.match('!eco set');
+	if (res == '!eco set') {
+		if (strmsg == '!eco set') {
+			channel.send(":x: Please enter a value");
+		}
+		else {
+			var thing = strmsg.match('!eco set (.+)');
+			if (msg.author.username == "Wesbot") {
+			}
+			else {
+				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
+				var newthing = splitAt(1)(thing);
+				var value = newthing[1];
+				//Set everyones balance to value
+				User.find({}, function (err, users) {
+					for (var i = 0, len = users.length; i < len; i++) {
+						users[i].Balance = Number(value);
+						users[i].save();
+					}
+					channel.send("All balances set to $" + value);
+				}
+			}
 		}
 	}
 	
