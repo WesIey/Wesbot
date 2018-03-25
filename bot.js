@@ -1013,10 +1013,10 @@ client.on('message', msg => {
 		channel.send('test');
 	}
 	
-	if (strmsg == '!convo') {
+	/*if (strmsg == '!convo') {
 		convo = !convo;
 		channel.send("Convo: " + convo);
-	}
+	}*/
 	
 	//AI
 	//res = strmsg.match('!wes');
