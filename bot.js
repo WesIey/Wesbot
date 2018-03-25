@@ -1032,7 +1032,7 @@ client.on('message', msg => {
 		 if (cs === undefined) {
 			 cs = "0";
 		 }
-		getJSON('http://www.cleverbot.com/getreply?key=' + process.env.CLEVERBOT_KEY + '&input=' + value + '&cs=' + cs,
+		getJSON('http://www.cleverbot.com/getreply?key=' + process.env.CLEVERBOT_KEY + '&input=' + value + '&cs=' + cs + '&callback',
 		function(err, data) {
 			if (err !== null) {
 				channel.send(":x: Error");
