@@ -235,7 +235,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					msg.delete();
+					//msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 						if (err) channel.send('Error');
@@ -270,7 +270,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					msg.delete();
+					//msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 						if (err) return handleError(err);
@@ -306,7 +306,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					msg.delete();
+					//msg.delete();
 					hl = false;
 				}
 			}
@@ -339,7 +339,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					msg.delete();
+					//msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 						if (err) return handleError(err);
@@ -375,7 +375,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					msg.delete();
+					//msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 		if (err) return handleError(err);
@@ -410,7 +410,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					msg.delete();
+					//msg.delete();
 					hl = false;
 				}
 			}
@@ -419,7 +419,7 @@ client.on('message', msg => {
 			}
 		}
 		else {
-			channel.send(":x: There is already someone playing");
+			//channel.send(":x: There is already someone playing");
 		}
 	}
 	else if (res == '!hl') {
@@ -853,6 +853,7 @@ client.on('message', msg => {
 		}
 	}
 	
+	/*
 	//Eco
 	res = strmsg.match('!eco set');
 	if (res == '!eco set') {
@@ -878,6 +879,7 @@ client.on('message', msg => {
 			}
 		}
 	}
+	*/
 	
 	//Help
 	if (strmsg === '!help') {
