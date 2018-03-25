@@ -81,6 +81,7 @@ var hmmsg;
 var channel;
 var hmfullword;
 var cs;
+var convo = false;
 
 //Ready event
 client.on('ready', () => {
@@ -1012,19 +1013,26 @@ client.on('message', msg => {
 		channel.send('test');
 	}
 	
+	if (strmsg == '!convo') {
+		convo = !convo;
+		channel.send("Convo: " + convo);
+	}
+	
 	//AI
-	res = strmsg.match('!wes');
-	if (res == '!wes') {
+	//res = strmsg.match('!wes');
+	//if (res == '!wes') {
+	if (convo) {
 		var cleverMessage = "";
-		var thing = strmsg.match('!wes (.+)');
+		/*var thing = strmsg.match('!wes (.+)');
 			if (msg.author.username == "Wesbot") {
 			}
 			else {
 				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
 				var newthing = splitAt(1)(thing);
 				cleverMessage = newthing[1];
-			}
-    cleverbot.write(cleverMessage, function (response) {
+			}*/
+    //cleverbot.write(cleverMessage, function (response) {
+	cleverbot.write(strmsg, function (response) {
        channel.send(response.output);
     });
 	}
