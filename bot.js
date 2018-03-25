@@ -866,6 +866,7 @@ client.on('message', msg => {
 				var newthing = splitAt(1)(thing);
 				var value = newthing[1];
 				client.user.setPresence({ status: 'online', game: { name: value } });
+				channel.send(":white_check_mark: now playing " + value);
 			}
 		}
 		else {
