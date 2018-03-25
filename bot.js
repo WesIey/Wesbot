@@ -659,6 +659,26 @@ client.on('message', msg => {
 		else { channel.send("No permission");}
 	}
 	
+	if (strmsg === '!stats') {
+		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
+			channel.send({embed: {
+				color: 3447003,
+				author: {
+					name: user.Name,
+					icon_url: msg.author.avatarURL
+				},
+				title: ':moneybag: Balance',
+				description: '$' + user.Balance.toLocaleString(),
+				fields[{
+					name: 'Level',
+					value: user.Level
+				}
+					
+				]
+			}});
+		});
+	}
+	
 	//Bal
 	if (strmsg === '!bal') {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
