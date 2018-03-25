@@ -1013,15 +1013,16 @@ client.on('message', msg => {
 		channel.send('test');
 	}
 	
-	/*if (strmsg == '!convo') {
+	if (strmsg == '!convo') {
 		convo = !convo;
 		channel.send("Convo: " + convo);
-	}*/
+	}
 	
 	//AI
 	//res = strmsg.match('!wes');
 	//if (res == '!wes') {
 	if (convo) {
+		if (msg.author.username != 'Wesbot') {
 		var cleverMessage = "";
 		/*var thing = strmsg.match('!wes (.+)');
 			if (msg.author.username == "Wesbot") {
@@ -1035,6 +1036,7 @@ client.on('message', msg => {
 	cleverbot.write(strmsg, function (response) {
        channel.send(response.output);
     });
+	}
 	}
 	
 	//Farm
