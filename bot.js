@@ -3,7 +3,7 @@
 	- upgradable farm
 	- hm against someone <player chooses word
 	- blackjack
-	- eco set
+	- eco <player set
 	- bal <player
 	- level <player
 	- leveltop
@@ -235,7 +235,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					//msg.delete();
+					msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 						if (err) channel.send('Error');
@@ -270,7 +270,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					//msg.delete();
+					msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 						if (err) return handleError(err);
@@ -306,7 +306,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					//msg.delete();
+					msg.delete();
 					hl = false;
 				}
 			}
@@ -339,7 +339,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					//msg.delete();
+					msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 						if (err) return handleError(err);
@@ -375,7 +375,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					//msg.delete();
+					msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 		if (err) return handleError(err);
@@ -410,7 +410,7 @@ client.on('message', msg => {
 							}
 						]
 					}});
-					//msg.delete();
+					msg.delete();
 					hl = false;
 				}
 			}
