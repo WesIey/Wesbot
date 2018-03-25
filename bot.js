@@ -19,6 +19,8 @@
 	- delete errors/causes, hl answer
 */
 
+//Cleverbot source: cleverbot.com
+
 var Cleverbot = require('cleverbot-node');
     cleverbot = new Cleverbot;
     cleverbot.configure({botapi: process.env.CLEVERBOT_KEY});
