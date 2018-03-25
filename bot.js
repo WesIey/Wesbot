@@ -1009,9 +1009,14 @@ client.on('message', msg => {
 	//Test
 	res = strmsg.match('!test');
 	if (res == '!test') {
-		//channel.send('test');
+		channel.send('test');
+	}
+	
+	//AI
+	res = strmsg.match('!wes');
+	if (res == '!wes') {
 		var cleverMessage = "";
-		var thing = strmsg.match('!test (.+)');
+		var thing = strmsg.match('!wes (.+)');
 			if (msg.author.username == "Wesbot") {
 			}
 			else {
@@ -1022,42 +1027,6 @@ client.on('message', msg => {
     cleverbot.write(cleverMessage, function (response) {
        channel.send(response.output);
     });
-		/*var thing = strmsg.match('!test (.+)');
-		var value;
-			if (msg.author.username == "Wesbot") {
-			}
-			else {
-				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
-				var newthing = splitAt(1)(thing);
-				value = newthing[1];
-			}
-		var getJSON = function(url, callback) {
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', url, true);
-			xhr.responseType = 'json';
-			xhr.onload = function() {
-				var status = xhr.status;
-				if (status === 200) {
-					callback(null, xhr.response);
-				} else {
-					callback(status, xhr.response);
-				}
-			};
-			xhr.send();
-		};
-		 //'&cs=76nxdxIJ02AAA&callback=ProcessReply',
-		 if (cs === undefined) {
-			 cs = "0";
-		 }
-		getJSON('http://www.cleverbot.com/getreply?key=' + process.env.CLEVERBOT_KEY + '&input=' + value + '&cs=' + cs + '&callback',
-		function(err, data) {
-			if (err !== null) {
-				channel.send(":x: Error");
-			} else {
-				channel.send(data.output);
-				cs = data.cs;
-			}
-		});*/
 	}
 	
 	//Farm
