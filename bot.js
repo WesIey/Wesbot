@@ -19,6 +19,10 @@
 	- delete errors/causes, hl answer
 */
 
+var Cleverbot = require('cleverbot-node');
+    cleverbot = new Cleverbot;
+    cleverbot.configure({botapi: process.env.CLEVERBOT_KEY});
+
 var mongoose = require('mongoose');
   
 db = mongoose.connect("mongodb://userone:" + process.env.MONGOPASS + "@ds223019.mlab.com:23019/discordbot");
@@ -1005,7 +1009,20 @@ client.on('message', msg => {
 	//Test
 	res = strmsg.match('!test');
 	if (res == '!test') {
+		//channel.send('test');
+		var cleverMessage = "";
 		var thing = strmsg.match('!test (.+)');
+			if (msg.author.username == "Wesbot") {
+			}
+			else {
+				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
+				var newthing = splitAt(1)(thing);
+				cleverMessage = newthing[1];
+			}
+    cleverbot.write(cleverMessage, function (response) {
+       channel.send(response.output);
+    });
+		/*var thing = strmsg.match('!test (.+)');
 		var value;
 			if (msg.author.username == "Wesbot") {
 			}
@@ -1040,7 +1057,7 @@ client.on('message', msg => {
 				channel.send(data.output);
 				cs = data.cs;
 			}
-		});
+		});*/
 	}
 	
 	//Farm

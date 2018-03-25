@@ -5,6 +5,7 @@
 	"main": "bot.js",
 	"author": "Wesley",
 	"dependencies": {
+		"cleverbot-node": "^0.3.11",
 		"discord.io": "^2.5.3",
 		"discord.js": "^11.3.2",
 		"express": "^4.16.3",
