@@ -875,7 +875,7 @@ client.on('message', msg => {
 						users[i].save();
 					}
 					channel.send("All balances set to $" + value);
-				}
+				};
 			}
 		}
 	}
