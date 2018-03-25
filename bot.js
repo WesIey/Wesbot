@@ -13,7 +13,6 @@
 	- quiz
 	- total messages server/person
 	- randomfacts
-	- now playing <
 	- hl emoji selection
 	- hl emoji numbers
 	- bank
@@ -855,7 +854,7 @@ client.on('message', msg => {
 	}
 	
 	//Play
-	res = strmsg.match('!play');
+	/*res = strmsg.match('!play');
 	if (res == '!play') {
 		if (strmsg != '!play') {
 			var thing = strmsg.match('!play (.+)');
@@ -872,7 +871,7 @@ client.on('message', msg => {
 		else {
 			channel.send(":x: You have to enter a game name");
 		}
-	}
+	}*/
 	
 	//Eco
 	res = strmsg.match('!eco set');
