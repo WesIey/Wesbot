@@ -8,8 +8,8 @@
 	- level <player
 	- leveltop
 	- shop? <level/bal required
-	- combine bal and level into !stats
 	- xp till level up
+	- add !stats to help
 	- quiz
 	- total messages server/person
 	- randomfacts
@@ -659,6 +659,7 @@ client.on('message', msg => {
 		else { channel.send("No permission");}
 	}
 	
+	//Stats
 	if (strmsg === '!stats') {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 			channel.send({embed: {
@@ -673,7 +674,7 @@ client.on('message', msg => {
 					name: 'Level',
 					value: user.Level
 				}, {
-					name: 'Messages',
+					name: ':e_mail: Messages',
 					value: user.Xp
 				}
 				]
