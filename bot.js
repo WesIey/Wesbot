@@ -134,7 +134,19 @@ client.on('message', msg => {
 			var xp = Number(user.Xp);
 			//levels: 1, 10, 50, 100, 200, 300, ...1000
 			var level;
-			if (xp >=1000) {
+			if (xp >= 2000) {
+				level = 17;
+			}
+			else if (xp >= 1750) {
+				level = 16;
+			}
+			else if (xp >= 1500) {
+				level = 15;
+			}
+			else if (xp >= 1250) {
+				level = 14;
+			}
+			else if (xp >=1000) {
 				level = 13;
 			}
 			else if (xp >= 900) {
