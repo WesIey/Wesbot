@@ -1028,7 +1028,7 @@ client.on('message', msg => {
 	if (res == '!test') {
 		$.getJSON('http://api.icndb.com/jokes/random?firstName=' + msg.author.username + '&lastName=', function(data) {
     //data is the JSON string
-	channel.send(data);
+	channel.send(${data.value.joke});
 });
 		channel.send('test');
 		
