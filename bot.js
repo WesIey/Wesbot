@@ -6,7 +6,7 @@
 	- eco <player set
 	- bal <player
 	- level <player
-	- leveltop
+	- leveltop, messagetop
 	- shop? <level/bal required
 	- xp till level up
 	- add !stats to help
@@ -1026,7 +1026,10 @@ client.on('message', msg => {
 	//Test
 	res = strmsg.match('!test');
 	if (res == '!test') {
-		
+		$.getJSON('http://api.icndb.com/jokes/random?firstName=' + msg.author.username + '&lastName=', function(data) {
+    //data is the JSON string
+	channel.send(data);
+});
 		channel.send('test');
 		
 	}
