@@ -1014,29 +1014,7 @@ client.on('message', msg => {
 	//Test
 	res = strmsg.match('!test');
 	if (res == '!test') {
-		var getJSON = function(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.responseType = 'json';
-    xhr.onload = function() {
-      var status = xhr.status;
-      if (status === 200) {
-        callback(null, xhr.response);
-      } else {
-        callback(status, xhr.response);
-      }
-    };
-    xhr.send();
-};
-		getJSON('http://api.icndb.com/jokes/random?firstName=' + msg.author.username + '&lastName=',
-function(err, data) {
-  if (err !== null) {
-    channel.send('Something went wrong: ' + err);
-  } else {
-    //use data here
-	channel.send(data);
-  }
-});
+		
 		channel.send('test');
 		
 	}
