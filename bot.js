@@ -1034,7 +1034,7 @@ function(err, data) {
     channel.send('Something went wrong: ' + err);
   } else {
     //use data here
-	channel.send(data.value.joke);
+	channel.send(data);
   }
 });
 		channel.send('test');
