@@ -12,7 +12,7 @@
 	- quiz
 	- total messages server/person
 	- randomfacts
-	- hl reaction selection
+	- games reaction selection
 	- hl emoji numbers
 	- bank
 	- arkham playercount
@@ -24,6 +24,7 @@
 	- xplevel switch case
 	- timeout games
 	- require jQuery
+	- remaining convo calls
 */
 
 //Cleverbot source: cleverbot.com
@@ -1059,8 +1060,9 @@ client.on('message', msg => {
 	}
 	
 	//Ping
-	if (strmsg === '!ping') {
-		channel.send(client.ping + "ms");
+	if (strmsg === "!ping") {
+		const m = await msg.channel.send("Pinging");
+		m.edit(`Ping: ${m.createdTimestamp - msg.createdTimestamp}ms. API ping: ${Math.round(client.ping)}ms`);
 	}
 	
 	//Test
