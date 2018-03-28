@@ -457,9 +457,9 @@ client.on('message', msg => {
 	else if (res == '!hl') {
 		if (strmsg === '!hl') {
 			var errormsg = ":x: Please enter a bet when using this command";
-			channel.send(errormsg).then((editthis)=>{
-				errormsg = editthis;
-			});
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 			//errormsg.delete(3000);
 			msg.delete(3000);
 		}
