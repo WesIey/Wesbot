@@ -769,7 +769,7 @@ client.on('message', msg => {
 		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
 		var newthing = splitAt(1)(thing);
 		var value = newthing[1];
-		User.findOne({ 'Name': value }, function (err, user) {
+		User.findOne({ 'Name': String(value) }, function (err, user) {
 			channel.send({embed: {
 				color: 3447003,
 				author: {
