@@ -24,6 +24,9 @@
 	- wornik api
 	- purgomalum api
 	- multiple instances games (array)
+	- xplevel switch case
+	- already playing response
+	- timeout games
 */
 
 //Cleverbot source: cleverbot.com
@@ -131,88 +134,83 @@ client.on('message', msg => {
 	var strmsg = msg.content.toLowerCase();
 	
 	//Xpgain
-	//if (msg.author.username != 'Wesbot') {
-		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
-			if (err) return handleError(err);
-			user.Xp = Number(user.Xp) + 1;
+	User.findOne({ 'UserID': msg.author.id }, function (err, user) {
+		if (err) return handleError(err);
+		user.Xp = Number(user.Xp) + 1;
+		user.save();
+		//Check for levelup
+		var xp = Number(user.Xp);
+		var level;
+		if (xp >= 2000) {
+			level = 17;
+		}
+		else if (xp >= 1750) {
+			level = 16;
+		}
+		else if (xp >= 1500) {
+			level = 15;
+		}
+		else if (xp >= 1250) {
+			level = 14;
+		}
+		else if (xp >=1000) {
+			level = 13;
+		}
+		else if (xp >= 900) {
+			level = 12;
+		}
+		else if (xp >= 800) {
+			level = 11;
+		}
+		else if (xp >= 700) {
+			level = 10;
+		}
+		else if (xp >= 600) {
+			level = 9;
+		}
+		else if (xp >= 500) {
+			level = 8;
+		}
+		else if (xp >= 400) {
+			level = 7;
+		}
+		else if (xp >= 300) {
+			level = 6;
+		}
+		else if (xp >= 200) {
+			level = 5;
+		}
+		else if (xp >= 100) {
+			level = 4;
+		}
+		else if (xp >= 50) {
+			level = 3;
+		}
+		else if (xp >= 10) {
+			level = 2;
+		}
+		else if (xp >= 1) {
+			level = 1;
+		}
+		if (user.Level < level) {
+			user.Level = Number(level);
 			user.save();
-			//Check for levelup
-			var xp = Number(user.Xp);
-			//levels: 1, 10, 50, 100, 200, 300, ...1000
-			var level;
-			if (xp >= 2000) {
-				level = 17;
-			}
-			else if (xp >= 1750) {
-				level = 16;
-			}
-			else if (xp >= 1500) {
-				level = 15;
-			}
-			else if (xp >= 1250) {
-				level = 14;
-			}
-			else if (xp >=1000) {
-				level = 13;
-			}
-			else if (xp >= 900) {
-				level = 12;
-			}
-			else if (xp >= 800) {
-				level = 11;
-			}
-			else if (xp >= 700) {
-				level = 10;
-			}
-			else if (xp >= 600) {
-				level = 9;
-			}
-			else if (xp >= 500) {
-				level = 8;
-			}
-			else if (xp >= 400) {
-				level = 7;
-			}
-			else if (xp >= 300) {
-				level = 6;
-			}
-			else if (xp >= 200) {
-				level = 5;
-			}
-			else if (xp >= 100) {
-				level = 4;
-			}
-			else if (xp >= 50) {
-				level = 3;
-			}
-			else if (xp >= 10) {
-				level = 2;
-			}
-			else if (xp >= 1) {
-				level = 1;
-			}
-			if (user.Level < level) {
-				user.Level = Number(level);
-				user.save();
-				channel.send({embed: {
-					color: 3447003,
-					author: {
-						name: msg.author.username,
-						icon_url: msg.author.avatarURL
-					},
-					title: ":arrow_up: Level up!",
-					description: "New level: " + level
-				}});
-			}
-		});
-		
-	//}
+			channel.send({embed: {
+				color: 3447003,
+				author: {
+					name: msg.author.username,
+					icon_url: msg.author.avatarURL
+				},
+				title: ":arrow_up: Level up!",
+				description: "New level: " + level
+			}});
+		}
+	});
 	
 	//Find money
-	//if ((msg.author.username != 'Wesbot') && (Math.floor((Math.random() * 100) + 0) < 2)) {
 	if (Math.floor((Math.random() * 100) + 0) < 2) {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
-		if (err) return handleError(err);
+			if (err) return handleError(err);
 			var money = Math.floor((Math.random() * 50) + 20);
 			user.Balance = user.Balance + money;
 			user.save();
@@ -407,10 +405,10 @@ client.on('message', msg => {
 					msg.delete();
 					hl = false;
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
-		if (err) return handleError(err);
-			user.Balance = Number(user.Balance) - Number(hlbet);
-			user.save();
-		});
+						if (err) return handleError(err);
+						user.Balance = Number(user.Balance) - Number(hlbet);
+						user.save();
+					});
 				}
 				else if (HigherLowerNr2 === HigherLowerNr1) {
 					hlmsg.edit({embed: {
@@ -448,22 +446,28 @@ client.on('message', msg => {
 			}
 		}
 		else {
-			//channel.send(":x: There is already someone playing");
+			var errormsg = ":x: Someone else is playing!";
+			channel.send(errormsg).then((editthis)=>{
+								errormsg = editthis;
+			});
+			errormsg.delete(3000);
+			msg.delete(3000);
 		}
 	}
 	else if (res == '!hl') {
 		if (strmsg === '!hl') {
-			channel.send("Please enter a bet when using this command");
+			var errormsg = ":x: Please enter a bet when using this command";
+			channel.send(errormsg).then((editthis)=>{
+								errormsg = editthis;
+			});
+			errormsg.delete(3000);
+			msg.delete(3000);
 		}
 		else {
 			var thing = strmsg.match('l (.+)');
-			//if (msg.author.username == "Wesbot") {
-			//}
-			//else {
-				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
-				var newthing = splitAt(1)(thing);
-				hlbet = newthing[1];
-			//}
+			const splitAt = index => x => [x.slice(0, index), x.slice(index)]
+			var newthing = splitAt(1)(thing);
+			hlbet = newthing[1];
 			if (hlbet >= 1) {
 				if (hlbet <= 100) {
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
@@ -493,16 +497,31 @@ client.on('message', msg => {
 							});
 						}
 						else {
-							channel.send(":x: You can't afford this bet");
+							var errormsg = ":x: You can't afford this bet";
+							channel.send(errormsg).then((editthis)=>{
+								errormsg = editthis;
+							});
+							errormsg.delete(3000);
+							msg.delete(3000);
 						}
 					});
 				}
 				else {
-					channel.send(":x: Max. bet is $100");
+					var errormsg = ":x: Max. bet is $100";
+					channel.send(errormsg).then((editthis)=>{
+								errormsg = editthis;
+					});
+					errormsg.delete(3000);
+					msg.delete(3000);
 				}
 			}
 			else {
-				channel.send(":x: Bet has to be $1+");
+				var errormsg = ":x: Bet has to be $1+";
+				channel.send(errormsg).then((editthis)=>{
+								errormsg = editthis;
+				});
+				errormsg.delete(3000);
+				msg.delete(3000);
 			}
 		}
 	}
@@ -512,7 +531,12 @@ client.on('message', msg => {
 	if (res == '!insult') {
 		var mentions = msg.mentions.users.array();
 		if (mentions[0] == undefined) {
-			channel.send(":x: Please mention someone when executing this command");
+			var errormsg = ":x: Please mention someone when executing this command";
+			channel.send(errormsg).then((editthis)=>{
+								errormsg = editthis;
+			});
+			errormsg.delete(3000);
+			msg.delete(3000);
 		}
 		else {
 			var userid = mentions[0].id;
@@ -529,10 +553,7 @@ client.on('message', msg => {
 	
 	//Headflip
 	res = strmsg.match('!hf');
-	if (hf) {
-		//Put hf event here
-	}
-	else if (hfrequest) {
+	if (hfrequest && !hf) {
 		//Accept/decline here
 		if (msg.author.username == hfplayer2) {
 			if (msg.content == 'accept') {
@@ -543,55 +564,53 @@ client.on('message', msg => {
 				if (rand >= 1) {
 					//Player1 won
 					channel.send({embed: {
-		color: 3447003,
-		author: {
-		name: "Headflip",
-		},
-		title: hfplayer1 + ' Won!',
-		fields: [{
-        name: ':white_check_mark: ' + hfplayer1 + ' + $' + Number(hfbet).toLocaleString(),
-        value: ":x: " + hfplayer2 + ' - $' + Number(hfbet).toLocaleString()
-		}
-		]
-		}});
-		//change bals
+						color: 3447003,
+						author: {
+							name: "Headflip",
+						},
+						title: hfplayer1 + ' Won!',
+						fields: [{
+							name: ':white_check_mark: ' + hfplayer1 + ' + $' + Number(hfbet).toLocaleString(),
+							value: ":x: " + hfplayer2 + ' - $' + Number(hfbet).toLocaleString()
+						}]
+					}});
+					//change bals
 					User.findOne({ 'Name': hfplayer1 }, function (err, user) {
-		if (err) return handleError(err);
-			user.Balance = Number(user.Balance) + Number(hfbet);
-			user.save();
-		});
+						if (err) return handleError(err);
+						user.Balance = Number(user.Balance) + Number(hfbet);
+						user.save();
+					});
 					User.findOne({ 'Name': hfplayer2 }, function (err, user) {
-		if (err) return handleError(err);
-			user.Balance = Number(user.Balance) - Number(hfbet);
-			user.save();
-		});
+						if (err) return handleError(err);
+						user.Balance = Number(user.Balance) - Number(hfbet);
+						user.save();
+					});
 					hf =false;
 				}
 				else {
 					//Player2 won
 					channel.send({embed: {
-		color: 3447003,
-		author: {
-		name: "Headflip",
-		},
-		title: hfplayer2 + ' Won!',
-		fields: [{
-        name: ':white_check_mark: ' + hfplayer2 + ' + $' + Number(hfbet).toLocaleString(),
-        value: ":x: " + hfplayer1 + ' - $' + Number(hfbet).toLocaleString()
-		}
-		]
-		}});
-		//change bals
+						color: 3447003,
+						author: {
+							name: "Headflip",
+						},
+						title: hfplayer2 + ' Won!',
+						fields: [{
+							name: ':white_check_mark: ' + hfplayer2 + ' + $' + Number(hfbet).toLocaleString(),
+							value: ":x: " + hfplayer1 + ' - $' + Number(hfbet).toLocaleString()
+						}]
+					}});
+					//change bals
 					User.findOne({ 'Name': hfplayer1 }, function (err, user) {
-		if (err) return handleError(err);
-			user.Balance = Number(user.Balance) - Number(hfbet);
-			user.save();
-		});
+						if (err) return handleError(err);
+						user.Balance = Number(user.Balance) - Number(hfbet);
+						user.save();
+					});
 					User.findOne({ 'Name': hfplayer2 }, function (err, user) {
-		if (err) return handleError(err);
-			user.Balance = Number(user.Balance) + Number(hfbet);
-			user.save();
-		});
+						if (err) return handleError(err);
+						user.Balance = Number(user.Balance) + Number(hfbet);
+						user.save();
+					});
 					hf = false;
 				}
 			}
@@ -608,10 +627,20 @@ client.on('message', msg => {
 		//Request a hf here
 		var mentions = msg.mentions.users.array();
 		if (mentions[0] == undefined) {
-			channel.send(":x: Please mention someone when executing this command");
+			var errormsg = ":x: Please mention someone when executing this command";
+			channel.send(errormsg).then((editthis)=>{
+								errormsg = editthis;
+			});
+			errormsg.delete(3000);
+			msg.delete(3000);
 		}
 		else if (mentions[0].username == msg.author.username) {
-			channel.send(":x: You can't hf yourself...");
+			var errormsg = ":x: You can't hf yourself...";
+			channel.send(errormsg).then((editthis)=>{
+								errormsg = editthis;
+			});
+			errormsg.delete(3000);
+			msg.delete(3000);
 		}
 		else if ((mentions[0].username != 'Wesbot')) {
 			hfplayer1 = msg.author.username;
@@ -633,18 +662,33 @@ client.on('message', msg => {
 								//Add a timeout to this
 							}
 							else {
-								channel.send('<@' + user2.UserID + "> Can't afford this bet");
+								var errormsg = '<@' + user2.UserID + "> Can't afford this bet";
+								channel.send(errormsg).then((editthis)=>{
+									errormsg = editthis;
+								});
+								errormsg.delete(3000);
+								msg.delete(3000);
 							}
 						});
 					}
 				});
 			}
 			else {
-				channel.send(":x: You can't afford this bet");
+				var errormsg = ":x: You can't afford this bet";
+				channel.send(errormsg).then((editthis)=>{
+					errormsg = editthis;
+				});
+				errormsg.delete(3000);
+				msg.delete(3000);
 			}
 		}
 		else {
-			channel.send(":x: You can't hf against me...");
+			var errormsg = ":x: You can't hf against me...";
+			channel.send(errormsg).then((editthis)=>{
+				errormsg = editthis;
+			});
+			errormsg.delete(3000);
+			msg.delete(3000);
 		}
 	}
 	
@@ -652,40 +696,47 @@ client.on('message', msg => {
 	res = strmsg.match('i am |I am |im |Im ')
 	if (res == 'i am ' || res == 'I am ' || res == 'im ' || res == 'Im ') {
 		var thing = strmsg.match('m (.+)');
-		//if (msg.author.username == "Wesbot") {
-		//}
-		//else {
-			const splitAt = index => x => [x.slice(0, index), x.slice(index)]
-			var newthing = splitAt(1)(thing);
-			channel.send('Hello ' + newthing[1] + ', I am daddy');
-		//}
+		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
+		var newthing = splitAt(1)(thing);
+		channel.send('Hello ' + newthing[1] + ', I am daddy');
 	}
 	
 	//Register
 	res = strmsg.match('!register');
 	if (res == '!register') {
 		if (msg.author == '<@323890009696370688>') {
-		var mentions = msg.mentions.users.array();
-		if (mentions[0] == undefined) {
-			channel.send(":x: Please mention someone when executing this command");
+			var mentions = msg.mentions.users.array();
+			if (mentions[0] == undefined) {
+				var errormsg = ":x: Please mention someone when executing this command";
+				channel.send(errormsg).then((editthis)=>{
+					errormsg = editthis;
+				});
+				errormsg.delete(3000);
+				msg.delete(3000);
+			}
+			else {
+				var userid = mentions[0].id;
+				var name = mentions[0].username;
+				var newuser = new User({ UserID: userid, Name: name, Balance: 100 });
+				newuser.save(function (err, newuser) {
+					if (err) return console.error(err);
+					channel.send(":white_check_mark: User " + mentions[0].username + " has been registered!");
+				});
+				Setting.findOne({}, function (err, setting) {
+					if (err) return handleError(err);
+					setting.UserCount = Number(setting.UserCount) + 1;
+					setting.save();
+				});
+			}
 		}
-		
-		else {
-			var userid = mentions[0].id;
-			var name = mentions[0].username;
-			var newuser = new User({ UserID: userid, Name: name, Balance: 100 });
-			newuser.save(function (err, newuser) {
-				if (err) return console.error(err);
-				channel.send(":white_check_mark: User " + mentions[0].username + " has been registered!");
+		else { 
+			var errormsg = "No permission";
+			channel.send(errormsg).then((editthis)=>{
+				errormsg = editthis;
 			});
-			Setting.findOne({}, function (err, setting) {
-				if (err) return handleError(err);
-				setting.UserCount = Number(setting.UserCount) + 1;
-				setting.save();
-			});
+			errormsg.delete(3000);
+			msg.delete(3000);
 		}
-		}
-		else { channel.send("No permission");}
 	}
 	
 	//Stats
@@ -714,7 +765,7 @@ client.on('message', msg => {
 	//Bal
 	if (strmsg === '!bal') {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
-		if (err) return handleError(err);
+			if (err) return handleError(err);
 			channel.send({embed: {
 				color: 3447003,
 				author: {
@@ -798,7 +849,6 @@ client.on('message', msg => {
 	
 	//Hangman
 	res = strmsg.match('[a-z]');
-	//if (hmactive && hmchannel == channel && msg.author.username != 'Wesbot' && res == strmsg) {
 	if (hmactive && hmchannel == channel && res == strmsg) {
 		var stringske = "";
 		var correct = false;
@@ -861,7 +911,6 @@ client.on('message', msg => {
 		}
 		msg.delete(3000);
 	}
-	//else if (hmactive && hmchannel == channel && msg.author.username != 'Wesbot' && strmsg == hmfullword) {
 	else if (hmactive && hmchannel == channel && strmsg == hmfullword) {
 		hmactive = false;
 		hmmsg.edit({embed: {
@@ -903,7 +952,12 @@ client.on('message', msg => {
 			});
 		}
 		else {
-			//already active
+			var errormsg = ":x: Someone else is playing!";
+			channel.send(errormsg).then((editthis)=>{
+				errormsg = editthis;
+			});
+			errormsg.delete(3000);
+			msg.delete(3000);
 		}
 	}
 	
@@ -911,14 +965,16 @@ client.on('message', msg => {
 	res = strmsg.match('!eco set');
 	if (res == '!eco set') {
 		if (msg.author == '<@323890009696370688>') {
-		if (strmsg == '!eco set') {
-			channel.send(":x: Please enter a value");
-		}
-		else {
-			var thing = strmsg.match('!eco set (.+)');
-			//if (msg.author.username == "Wesbot") {
-			//}
-			//else {
+			if (strmsg == '!eco set') {
+				var errormsg = ":x: Please enter a value";
+				channel.send(errormsg).then((editthis)=>{
+					errormsg = editthis;
+				});
+				errormsg.delete(3000);
+				msg.delete(3000);
+			}
+			else {
+				var thing = strmsg.match('!eco set (.+)');
 				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
 				var newthing = splitAt(1)(thing);
 				var value = newthing[1];
@@ -928,49 +984,51 @@ client.on('message', msg => {
 						users[i].Balance = Number(value);
 						users[i].save();
 					}
-					channel.send("All balances set to $" + value);
+					channel.send(":white_check_mark: All balances set to $" + value);
 				});
-			//}
-		}
+			}
 		}
 		else {
-			channel.send(":x: Permission denied");
+			var errormsg = ":x: Permission denied";
+			channel.send(errormsg).then((editthis)=>{
+				errormsg = editthis;
+			});
+			errormsg.delete(3000);
+			msg.delete(3000);
 		}
 	}
-	
 	
 	//Help
 	if (strmsg === '!help') {
 		channel.send({embed: {
-		color: 3447003,
-		author: {
-		name: client.user.username,
-		icon_url: client.user.avatarURL
-		},
-		title: "Commands",
-		fields: [{
-			name: "!hl <bet>",
-			value: "Activates the higher lower minigame"
-		}, {
-			name: "!insult <@user>",
-			value: "Insults the mentioned user"
-		}, {
-			name: "!bal",
-			value: "Returns your balance"
-		}, {
-			name: "!baltop",
-			value: "Returns top 5 balances"
-		}, {
-			name: "!hf <@user> <bet>",
-			value: "Requests a headflip against the mentioned player"
-		}, {
-			name: "!level",
-			value: "Returns your current level"
-		}, {
-			name: "!hm",
-			value: "Starts a game of hangman"
-		}
-		]
+			color: 3447003,
+			author: {
+				name: client.user.username,
+				icon_url: client.user.avatarURL
+			},
+			title: "Commands",
+			fields: [{
+				name: "!hl <bet>",
+				value: "Activates the higher lower minigame"
+			}, {
+				name: "!insult <@user>",
+				value: "Insults the mentioned user"
+			}, {
+				name: "!bal",
+				value: "Returns your balance"
+			}, {
+				name: "!baltop",
+				value: "Returns top 5 balances"
+			}, {
+				name: "!hf <@user> <bet>",
+				value: "Requests a headflip against the mentioned player"
+			}, {
+				name: "!level",
+				value: "Returns your current level"
+			}, {
+				name: "!hm",
+				value: "Starts a game of hangman"
+			}]
 		}});
 	}
 	
@@ -986,16 +1044,20 @@ client.on('message', msg => {
 				if (err) return handleError(err);
 				var newword = new Word({ Wordd: addWord, WordNr: setting.Words });
 				newword.save(function (err, newword) {
-				if (err) return console.error(err);
-				});
+					if (err) return console.error(err);
+					});
 				setting.Words = Number(setting.Words) + 1;
 				setting.save();
 			});
 			channel.send("Added \"" + addWord + "\"");
-			
 		}
 		else {
-			channel.send(":x: Permission denied");
+			var errormsg = ":x: Permission denied";
+			channel.send(errormsg).then((editthis)=>{
+				errormsg = editthis;
+			});
+			errormsg.delete(3000);
+			msg.delete(3000);
 		}
 	}
 	
@@ -1015,9 +1077,7 @@ client.on('message', msg => {
 	//Test
 	res = strmsg.match('!test');
 	if (res == '!test') {
-		
 		channel.send('test');
-		
 	}
 	
 	//Convo
@@ -1027,24 +1087,11 @@ client.on('message', msg => {
 	}
 	
 	//AI
-	//res = strmsg.match('!wes');
-	//if (res == '!wes') {
 	if (convo && strmsg != '!convo') {
-		//if (msg.author.username != 'Wesbot') {
 		var cleverMessage = "";
-		/*var thing = strmsg.match('!wes (.+)');
-			if (msg.author.username == "Wesbot") {
-			}
-			else {
-				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
-				var newthing = splitAt(1)(thing);
-				cleverMessage = newthing[1];
-			}*/
-    //cleverbot.write(cleverMessage, function (response) {
-	cleverbot.write(strmsg, function (response) {
-       channel.send(response.output);
-    });
-	//}
+		cleverbot.write(strmsg, function (response) {
+			channel.send(response.output);
+		});
 	}
 	
 	//Farm
