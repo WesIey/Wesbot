@@ -993,25 +993,28 @@ client.on('message', msg => {
 			title: "Commands",
 			fields: [{
 				name: "!hl <bet>",
-				value: "Activates the higher lower minigame"
+				value: "Starts a game of higher-lower"
 			}, {
 				name: "!insult <@user>",
 				value: "Insults the mentioned user"
 			}, {
 				name: "!bal",
-				value: "Returns your balance"
+				value: "Displays your balance"
 			}, {
 				name: "!baltop",
-				value: "Returns top 5 balances"
+				value: "Displays top 5 balances"
 			}, {
 				name: "!hf <@user> <bet>",
-				value: "Requests a headflip against the mentioned player"
+				value: "Requests a headflip against the mentioned user"
 			}, {
 				name: "!level",
-				value: "Returns your current level"
+				value: "Displays your level"
 			}, {
 				name: "!hm",
 				value: "Starts a game of hangman"
+			}, {
+				name: "!stats",
+				value: "Displays your stats"
 			}]
 		}});
 	}
