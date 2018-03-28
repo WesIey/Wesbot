@@ -1062,7 +1062,7 @@ client.on('message', msg => {
 	//Ping
 	if (strmsg === "!ping") {
 		var ab;
-		var pingmsg = await channel.send("Pinging").then(pmsg => {
+		var pingmsg = channel.send("Pinging").then(pmsg => {
 			ab = pmsg;
 		}
 		ab.edit("Ping: " + (ab.createdTimestamp - msg.createdTimestamp) + "ms");
