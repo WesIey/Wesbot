@@ -3,7 +3,6 @@
 	- upgradable farm
 	- hm against someone <player chooses word
 	- blackjack
-	- eco <player set
 	- bal <player
 	- level <player
 	- leveltop, messagetop
@@ -18,7 +17,7 @@
 	- multiple instances games (array)
 	- xplevel switch case
 	- timeout games
-	- remaining convo calls
+	- remaining convo calls, add to settings
 */
 
 //Cleverbot source: cleverbot.com
@@ -751,6 +750,7 @@ client.on('message', msg => {
 	}
 	
 	//Bal
+	res = strmsg.match('!bal');
 	if (strmsg === '!bal') {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 			if (err) return handleError(err);
@@ -759,6 +759,21 @@ client.on('message', msg => {
 				author: {
 					name: user.Name,
 					icon_url: msg.author.avatarURL
+				},
+				title: ':moneybag: Balance: $' + user.Balance.toLocaleString()
+			}});
+		});
+	}
+	else {
+		var thing = strmsg.match('!bal (.+)');
+		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
+		var newthing = splitAt(1)(thing);
+		var value = newthing[1];
+		User.findOne({ 'Name': value }, function (err, user) {
+			channel.send({embed: {
+				color: 3447003,
+				author: {
+					name: user.Name
 				},
 				title: ':moneybag: Balance: $' + user.Balance.toLocaleString()
 			}});
