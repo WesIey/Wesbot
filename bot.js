@@ -9,24 +9,21 @@
 	- leveltop, messagetop
 	- shop? <level/bal required
 	- xp till level up
-	- add !stats to help
 	- quiz
 	- total messages server/person
 	- randomfacts
-	- hl emoji selection
+	- hl reaction selection
 	- hl emoji numbers
 	- bank
-	- delete errors/causes, hl answer
 	- arkham playercount
-	- filter
-	- bee movie
+	- filter, purgomalum api
+	- story, bee movie
 	- jokes api
 	- wornik api
-	- purgomalum api
 	- multiple instances games (array)
 	- xplevel switch case
-	- already playing response
 	- timeout games
+	- require jQuery
 */
 
 //Cleverbot source: cleverbot.com
@@ -195,7 +192,7 @@ client.on('message', msg => {
 		if (user.Level < level) {
 			user.Level = Number(level);
 			user.save();
-			channel.send({embed: {
+			var lvlupmsg = {embed: {
 				color: 3447003,
 				author: {
 					name: msg.author.username,
@@ -203,7 +200,10 @@ client.on('message', msg => {
 				},
 				title: ":arrow_up: Level up!",
 				description: "New level: " + level
-			}});
+			}};
+			channel.send(lvlupmsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 		}
 	});
 	
@@ -222,10 +222,13 @@ client.on('message', msg => {
 					setting.save();
 				}
 			});
-			channel.send({embed: {
+			var findmsg = {embed: {
 				color: 3447003,
 				title: ':moneybag: ' + user.Name + " Got lucky and found $" + money
-			}});
+			}};
+			channel.send(findmsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 		});
 	}
 	
