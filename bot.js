@@ -980,11 +980,12 @@ client.on('message', msg => {
 					for (var i = 0; i < mentions.length; i++) {
 						channel.send("test/ Index: " + i);
 						channel.send("test/ Searching for UserID: " + mentions[i].id);
-						/*User.find({ 'UserID': mentions[i].id }, function (err, user) {
+						var reqid = String(mentions[i].id);
+						User.find({ 'UserID': reqid }, function (err, user) {
 							channel.send("test/ Setting bal to: " + value);
 							user.Balance = Number(value);
 							user.save();
-						});*/
+						});
 					}
 					channel.send(":white_check_mark: Done");
 				}
