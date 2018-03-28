@@ -15,11 +15,6 @@
 	- games reaction selection
 	- hl emoji numbers
 	- bank
-	- arkham playercount
-	- filter, purgomalum api
-	- story, bee movie
-	- jokes api
-	- wornik api
 	- multiple instances games (array)
 	- xplevel switch case
 	- timeout games
@@ -962,18 +957,34 @@ client.on('message', msg => {
 				msg.delete(3000);
 			}
 			else {
-				var thing = strmsg.match('!eco set (.+)');
-				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
-				var newthing = splitAt(1)(thing);
-				var value = newthing[1];
-				//Set everyones balance to value
-				User.find({}, function (err, users) {
-					for (var i = 0, len = users.length; i < len; i++) {
-						users[i].Balance = Number(value);
-						users[i].save();
+				var mentions = msg.mentions.users.array();
+				if (mentions[0] == undefined) {
+					var thing = strmsg.match('!eco set (.+)');
+					const splitAt = index => x => [x.slice(0, index), x.slice(index)]
+					var newthing = splitAt(1)(thing);
+					var value = newthing[1];
+					//Set everyones balance to value
+					User.find({}, function (err, users) {
+						for (var i = 0, len = users.length; i < len; i++) {
+							users[i].Balance = Number(value);
+							users[i].save();
+						}
+						channel.send(":white_check_mark: All balances set to $" + value);
+					});
+				}
+				else {
+					var thing = strmsg.match('set (.+)');
+					const splitAt = index => x => [x.slice(0,index), x.slice(index)]
+					var newthing = splitAt(1)(thing);
+					var value = newthing[1];
+					for (var i = 0; i < mentions.length; i++) {
+						User.find({ 'UserID': mentions[i].id }, function (err, user) {
+							user.Balance = Number(value);
+							user.save();
+						});
 					}
-					channel.send(":white_check_mark: All balances set to $" + value);
-				});
+					channel.send(":white_check_mark: Done");
+				}
 			}
 		}
 		else {
