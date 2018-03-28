@@ -1061,9 +1061,8 @@ client.on('message', msg => {
 	
 	//Ping
 	if (strmsg === '!ping') {
-		channel.send(client.ping + "ms");
 		channel.send('Pinging...').then(pingms => {
-			pingms.edit('Ping: ' + (pingms.createdTimestamp - msg.createdTimestamp) + "ms");
+			pingms.edit('Ping: ' + (pingms.createdTimestamp - msg.createdTimestamp) + "ms, API ping: " + client.ping + "ms");
 		});
 	}
 	
