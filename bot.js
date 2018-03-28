@@ -982,7 +982,7 @@ client.on('message', msg => {
 						channel.send("test/ Index: " + i);
 						var reqid = String(mentions[i].id);
 						channel.send("test/ Searching for UserID: " + mentions[i].id);
-						User.find({ 'UserID': reqid }, function (err, user) {
+						User.findOne({ 'UserID': reqid }, function (err, user) {
 							channel.send("test/ Setting balance of " + user.Name + " to: " + value);
 							user.Balance = Number(value);
 							user.save();
