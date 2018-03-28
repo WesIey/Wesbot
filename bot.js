@@ -33,6 +33,8 @@ var Cleverbot = require('cleverbot-node');
     cleverbot = new Cleverbot;
     cleverbot.configure({botapi: process.env.CLEVERBOT_KEY});
 
+var jQuery = require('jQuery');
+	
 var mongoose = require('mongoose');
   
 db = mongoose.connect("mongodb://userone:" + process.env.MONGOPASS + "@ds223019.mlab.com:23019/discordbot");
@@ -1069,6 +1071,9 @@ client.on('message', msg => {
 	//Test
 	res = strmsg.match('!test');
 	if (res == '!test') {
+		jQuery.getJSON('http://api.icndb.com/jokes/random?firstName=Wesleu&lastName=', function (data) {
+			channel.send(data);
+		});
 		channel.send('test');
 	}
 	
