@@ -127,7 +127,6 @@ client.on('message', msg => {
 //NewMesage event
 client.on('message', msg => {
 	if (msg.author.bot) return;
-	if(msg.content.indexOf("!") !== 0) return;
 	channel = msg.channel;
 	var strmsg = msg.content.toLowerCase();
 	
