@@ -1071,9 +1071,6 @@ client.on('message', msg => {
 	//Test
 	res = strmsg.match('!test');
 	if (res == '!test') {
-		jQuery.getJSON('http://api.icndb.com/jokes/random?firstName=Wesleu&lastName=', function (data) {
-			channel.send(data);
-		});
 		channel.send('test');
 	}
 	
