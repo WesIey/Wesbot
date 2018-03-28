@@ -703,7 +703,7 @@ client.on('message', msg => {
 			else {
 				var userid = mentions[0].id;
 				var name = mentions[0].username;
-				var newuser = new User({ UserID: userid, Name: name, Balance: 100 });
+				var newuser = new User({ UserID: userid, Name: name, Balance: 100, Level: 0, Xp: 0 });
 				newuser.save(function (err, newuser) {
 					if (err) return console.error(err);
 					channel.send(":white_check_mark: User " + mentions[0].username + " has been registered!");
