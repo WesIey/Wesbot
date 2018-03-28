@@ -946,8 +946,8 @@ client.on('message', msg => {
 	}
 	
 	//Eco
-	res = strmsg.match('!eco set');
-	if (res == '!eco set') {
+	res = strmsg.match('!eco');
+	if (res == '!eco') {
 		if (msg.author == '<@323890009696370688>') {
 			if (strmsg == '!eco set') {
 				var errormsg = ":x: Please enter a value";
