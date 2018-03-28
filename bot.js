@@ -23,7 +23,6 @@
 	- multiple instances games (array)
 	- xplevel switch case
 	- timeout games
-	- require jQuery
 	- remaining convo calls
 */
 
@@ -32,8 +31,6 @@
 var Cleverbot = require('cleverbot-node');
     cleverbot = new Cleverbot;
     cleverbot.configure({botapi: process.env.CLEVERBOT_KEY});
-
-var jQuery = require('jQuery');
 	
 var mongoose = require('mongoose');
   
