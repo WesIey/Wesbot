@@ -977,12 +977,13 @@ client.on('message', msg => {
 					const splitAt = index => x => [x.slice(0,index), x.slice(index)]
 					var newthing = splitAt(1)(thing);
 					var value = newthing[1];
+					channel.send("test/ Value: " + Number(value));
 					for (var i = 0; i < mentions.length; i++) {
 						channel.send("test/ Index: " + i);
-						channel.send("test/ Searching for UserID: " + mentions[i].id);
 						var reqid = String(mentions[i].id);
+						channel.send("test/ Searching for UserID: " + mentions[i].id);
 						User.find({ 'UserID': reqid }, function (err, user) {
-							channel.send("test/ Setting bal to: " + value);
+							channel.send("test/ Setting balance of " + user.Name + " to: " + value);
 							user.Balance = Number(value);
 							user.save();
 						});
