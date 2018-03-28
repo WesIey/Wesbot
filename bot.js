@@ -1060,12 +1060,8 @@ client.on('message', msg => {
 	}
 	
 	//Ping
-	if (strmsg === "!ping") {
-		var ab;
-		var pingmsg = channel.send("Pinging").then(pmsg => {
-			ab = pmsg;
-		}
-		ab.edit("Ping: " + (ab.createdTimestamp - msg.createdTimestamp) + "ms");
+	if (strmsg === '!ping') {
+		channel.send(client.ping + "ms");
 	}
 	
 	//Test
