@@ -1061,8 +1061,11 @@ client.on('message', msg => {
 	
 	//Ping
 	if (strmsg === "!ping") {
-		const m = await msg.channel.send("Pinging");
-		m.edit(`Ping: ${m.createdTimestamp - msg.createdTimestamp}ms. API ping: ${Math.round(client.ping)}ms`);
+		var ab;
+		var pingmsg = await channel.send("Pinging").then(pmsg => {
+			ab = pmsg;
+		}
+		ab.edit("Ping: " + (ab.createdTimestamp - msg.createdTimestamp) + "ms");
 	}
 	
 	//Test
