@@ -447,10 +447,9 @@ client.on('message', msg => {
 		}
 		else {
 			var errormsg = ":x: Someone else is playing!";
-			channel.send(errormsg).then((editthis)=>{
-								errormsg = editthis;
-			});
-			errormsg.delete(3000);
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 			msg.delete(3000);
 		}
 	}
@@ -460,7 +459,6 @@ client.on('message', msg => {
 			channel.send(errormsg).then(errmsg => {
 				errmsg.delete(3000)
 			})
-			//errormsg.delete(3000);
 			msg.delete(3000);
 		}
 		else {
@@ -498,29 +496,26 @@ client.on('message', msg => {
 						}
 						else {
 							var errormsg = ":x: You can't afford this bet";
-							channel.send(errormsg).then((editthis)=>{
-								errormsg = editthis;
-							});
-							errormsg.delete(3000);
+							channel.send(errormsg).then(errmsg => {
+								errmsg.delete(3000)
+							})
 							msg.delete(3000);
 						}
 					});
 				}
 				else {
 					var errormsg = ":x: Max. bet is $100";
-					channel.send(errormsg).then((editthis)=>{
-								errormsg = editthis;
-					});
-					errormsg.delete(3000);
+					channel.send(errormsg).then(errmsg => {
+						errmsg.delete(3000)
+					})
 					msg.delete(3000);
 				}
 			}
 			else {
 				var errormsg = ":x: Bet has to be $1+";
-				channel.send(errormsg).then((editthis)=>{
-								errormsg = editthis;
-				});
-				errormsg.delete(3000);
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
 				msg.delete(3000);
 			}
 		}
@@ -532,10 +527,9 @@ client.on('message', msg => {
 		var mentions = msg.mentions.users.array();
 		if (mentions[0] == undefined) {
 			var errormsg = ":x: Please mention someone when executing this command";
-			channel.send(errormsg).then((editthis)=>{
-								errormsg = editthis;
-			});
-			errormsg.delete(3000);
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 			msg.delete(3000);
 		}
 		else {
@@ -628,18 +622,16 @@ client.on('message', msg => {
 		var mentions = msg.mentions.users.array();
 		if (mentions[0] == undefined) {
 			var errormsg = ":x: Please mention someone when executing this command";
-			channel.send(errormsg).then((editthis)=>{
-								errormsg = editthis;
-			});
-			errormsg.delete(3000);
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 			msg.delete(3000);
 		}
 		else if (mentions[0].username == msg.author.username) {
 			var errormsg = ":x: You can't hf yourself...";
-			channel.send(errormsg).then((editthis)=>{
-								errormsg = editthis;
-			});
-			errormsg.delete(3000);
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 			msg.delete(3000);
 		}
 		else if ((mentions[0].username != 'Wesbot')) {
@@ -663,10 +655,9 @@ client.on('message', msg => {
 							}
 							else {
 								var errormsg = '<@' + user2.UserID + "> Can't afford this bet";
-								channel.send(errormsg).then((editthis)=>{
-									errormsg = editthis;
-								});
-								errormsg.delete(3000);
+								channel.send(errormsg).then(errmsg => {
+									errmsg.delete(3000)
+								})
 								msg.delete(3000);
 							}
 						});
@@ -675,19 +666,17 @@ client.on('message', msg => {
 			}
 			else {
 				var errormsg = ":x: You can't afford this bet";
-				channel.send(errormsg).then((editthis)=>{
-					errormsg = editthis;
-				});
-				errormsg.delete(3000);
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
 				msg.delete(3000);
 			}
 		}
 		else {
 			var errormsg = ":x: You can't hf against me...";
-			channel.send(errormsg).then((editthis)=>{
-				errormsg = editthis;
-			});
-			errormsg.delete(3000);
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 			msg.delete(3000);
 		}
 	}
@@ -708,10 +697,9 @@ client.on('message', msg => {
 			var mentions = msg.mentions.users.array();
 			if (mentions[0] == undefined) {
 				var errormsg = ":x: Please mention someone when executing this command";
-				channel.send(errormsg).then((editthis)=>{
-					errormsg = editthis;
-				});
-				errormsg.delete(3000);
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
 				msg.delete(3000);
 			}
 			else {
@@ -731,10 +719,9 @@ client.on('message', msg => {
 		}
 		else { 
 			var errormsg = "No permission";
-			channel.send(errormsg).then((editthis)=>{
-				errormsg = editthis;
-			});
-			errormsg.delete(3000);
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 			msg.delete(3000);
 		}
 	}
@@ -953,10 +940,9 @@ client.on('message', msg => {
 		}
 		else {
 			var errormsg = ":x: Someone else is playing!";
-			channel.send(errormsg).then((editthis)=>{
-				errormsg = editthis;
-			});
-			errormsg.delete(3000);
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 			msg.delete(3000);
 		}
 	}
@@ -967,10 +953,9 @@ client.on('message', msg => {
 		if (msg.author == '<@323890009696370688>') {
 			if (strmsg == '!eco set') {
 				var errormsg = ":x: Please enter a value";
-				channel.send(errormsg).then((editthis)=>{
-					errormsg = editthis;
-				});
-				errormsg.delete(3000);
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
 				msg.delete(3000);
 			}
 			else {
@@ -990,10 +975,9 @@ client.on('message', msg => {
 		}
 		else {
 			var errormsg = ":x: Permission denied";
-			channel.send(errormsg).then((editthis)=>{
-				errormsg = editthis;
-			});
-			errormsg.delete(3000);
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 			msg.delete(3000);
 		}
 	}
@@ -1053,10 +1037,9 @@ client.on('message', msg => {
 		}
 		else {
 			var errormsg = ":x: Permission denied";
-			channel.send(errormsg).then((editthis)=>{
-				errormsg = editthis;
-			});
-			errormsg.delete(3000);
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
 			msg.delete(3000);
 		}
 	}
