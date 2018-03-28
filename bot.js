@@ -979,11 +979,8 @@ client.on('message', msg => {
 					var value = newthing[1];
 					channel.send("test/ Value: " + Number(value));
 					for (var i = 0; i < mentions.length; i++) {
-						channel.send("test/ Index: " + i);
 						var reqid = String(mentions[i].id);
-						channel.send("test/ Searching for UserID: " + mentions[i].id);
 						User.findOne({ 'UserID': reqid }, function (err, user) {
-							channel.send("test/ Setting balance of " + user.Name + " to: " + value);
 							user.Balance = Number(value);
 							user.save();
 						});
