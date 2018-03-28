@@ -121,7 +121,6 @@ client.on('message', msg => {
 
 //NewMesage event
 client.on('message', msg => {
-	if (msg.author.bot) return;
 	channel = msg.channel;
 	var strmsg = msg.content.toLowerCase();
 	
@@ -130,77 +129,81 @@ client.on('message', msg => {
 		if (err) return handleError(err);
 		user.Xp = Number(user.Xp) + 1;
 		user.save();
-		//Check for levelup
-		var xp = Number(user.Xp);
-		var level;
-		if (xp >= 2000) {
-			level = 17;
-		}
-		else if (xp >= 1750) {
-			level = 16;
-		}
-		else if (xp >= 1500) {
-			level = 15;
-		}
-		else if (xp >= 1250) {
-			level = 14;
-		}
-		else if (xp >=1000) {
-			level = 13;
-		}
-		else if (xp >= 900) {
-			level = 12;
-		}
-		else if (xp >= 800) {
-			level = 11;
-		}
-		else if (xp >= 700) {
-			level = 10;
-		}
-		else if (xp >= 600) {
-			level = 9;
-		}
-		else if (xp >= 500) {
-			level = 8;
-		}
-		else if (xp >= 400) {
-			level = 7;
-		}
-		else if (xp >= 300) {
-			level = 6;
-		}
-		else if (xp >= 200) {
-			level = 5;
-		}
-		else if (xp >= 100) {
-			level = 4;
-		}
-		else if (xp >= 50) {
-			level = 3;
-		}
-		else if (xp >= 10) {
-			level = 2;
-		}
-		else if (xp >= 1) {
-			level = 1;
-		}
-		if (user.Level < level) {
-			user.Level = Number(level);
-			user.save();
-			var lvlupmsg = {embed: {
-				color: 3447003,
-				author: {
-					name: msg.author.username,
-					icon_url: msg.author.avatarURL
-				},
-				title: ":arrow_up: Level up!",
-				description: "New level: " + level
-			}};
-			channel.send(lvlupmsg).then(errmsg => {
-				errmsg.delete(3000)
-			})
+		if (!msg.author.bot) {
+			//Check for levelup
+			var xp = Number(user.Xp);
+			var level;
+			if (xp >= 2000) {
+				level = 17;
+			}
+			else if (xp >= 1750) {
+				level = 16;
+			}
+			else if (xp >= 1500) {
+				level = 15;
+			}
+			else if (xp >= 1250) {
+				level = 14;
+			}
+			else if (xp >=1000) {
+				level = 13;
+			}
+			else if (xp >= 900) {
+				level = 12;
+			}
+			else if (xp >= 800) {
+				level = 11;
+			}
+			else if (xp >= 700) {
+				level = 10;
+			}
+			else if (xp >= 600) {
+				level = 9;
+			}
+			else if (xp >= 500) {
+				level = 8;
+			}
+			else if (xp >= 400) {
+				level = 7;
+			}
+			else if (xp >= 300) {
+				level = 6;
+			}
+			else if (xp >= 200) {
+				level = 5;
+			}
+			else if (xp >= 100) {
+				level = 4;
+			}
+			else if (xp >= 50) {
+				level = 3;
+			}
+			else if (xp >= 10) {
+				level = 2;
+			}
+			else if (xp >= 1) {
+				level = 1;
+			}
+			if (user.Level < level) {
+				user.Level = Number(level);
+				user.save();
+				var lvlupmsg = {embed: {
+					color: 3447003,
+					author: {
+						name: msg.author.username,
+						icon_url: msg.author.avatarURL
+					},
+					title: ":arrow_up: Level up!",
+					description: "New level: " + level
+				}};
+				channel.send(lvlupmsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
+			}
 		}
 	});
+	
+	if (msg.author.bot) return;
 	
 	//Find money
 	if (Math.floor((Math.random() * 100) + 0) < 2) {
