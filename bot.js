@@ -1046,7 +1046,7 @@ client.on('message', msg => {
 			var errormsg = ":x: Permission denied";
 			channel.send(errormsg).then(errmsg => {
 				errmsg.delete(3000)
-			})
+			});
 			msg.delete(3000);
 		}
 	}
@@ -1062,6 +1062,9 @@ client.on('message', msg => {
 	//Ping
 	if (strmsg === '!ping') {
 		channel.send(client.ping + "ms");
+		channel.send('Pinging...').then(pingms => {
+			pingms.edit('Ping: ' + (pingms.createdTimestamp - msg.createdTimestamp) + "ms");
+		});
 	}
 	
 	//Test
