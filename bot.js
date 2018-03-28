@@ -19,6 +19,11 @@
 	- delete errors/causes, hl answer
 	- arkham playercount
 	- filter
+	- bee movie
+	- jokes api
+	- wornik api
+	- purgomalum api
+	- multiple instances games (array)
 */
 
 //Cleverbot source: cleverbot.com
@@ -121,11 +126,13 @@ client.on('message', msg => {
 
 //NewMesage event
 client.on('message', msg => {
+	if (msg.author.bot) return;
+	if(msg.content.indexOf("!") !== 0) return;
 	channel = msg.channel;
 	var strmsg = msg.content.toLowerCase();
 	
 	//Xpgain
-	if (msg.author.username != 'Wesbot') {
+	//if (msg.author.username != 'Wesbot') {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 			if (err) return handleError(err);
 			user.Xp = Number(user.Xp) + 1;
@@ -200,10 +207,11 @@ client.on('message', msg => {
 			}
 		});
 		
-	}
+	//}
 	
 	//Find money
-	if ((msg.author.username != 'Wesbot') && (Math.floor((Math.random() * 100) + 0) < 2)) {
+	//if ((msg.author.username != 'Wesbot') && (Math.floor((Math.random() * 100) + 0) < 2)) {
+	if (Math.floor((Math.random() * 100) + 0) < 2) {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 		if (err) return handleError(err);
 			var money = Math.floor((Math.random() * 50) + 20);
@@ -450,13 +458,13 @@ client.on('message', msg => {
 		}
 		else {
 			var thing = strmsg.match('l (.+)');
-			if (msg.author.username == "Wesbot") {
-			}
-			else {
+			//if (msg.author.username == "Wesbot") {
+			//}
+			//else {
 				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
 				var newthing = splitAt(1)(thing);
 				hlbet = newthing[1];
-			}
+			//}
 			if (hlbet >= 1) {
 				if (hlbet <= 100) {
 					User.findOne({ 'UserID': msg.author.id }, function (err, user) {
@@ -645,13 +653,13 @@ client.on('message', msg => {
 	res = strmsg.match('i am |I am |im |Im ')
 	if (res == 'i am ' || res == 'I am ' || res == 'im ' || res == 'Im ') {
 		var thing = strmsg.match('m (.+)');
-		if (msg.author.username == "Wesbot") {
-		}
-		else {
+		//if (msg.author.username == "Wesbot") {
+		//}
+		//else {
 			const splitAt = index => x => [x.slice(0, index), x.slice(index)]
 			var newthing = splitAt(1)(thing);
 			channel.send('Hello ' + newthing[1] + ', I am daddy');
-		}
+		//}
 	}
 	
 	//Register
@@ -791,7 +799,8 @@ client.on('message', msg => {
 	
 	//Hangman
 	res = strmsg.match('[a-z]');
-	if (hmactive && hmchannel == channel && msg.author.username != 'Wesbot' && res == strmsg) {
+	//if (hmactive && hmchannel == channel && msg.author.username != 'Wesbot' && res == strmsg) {
+	if (hmactive && hmchannel == channel && res == strmsg) {
 		var stringske = "";
 		var correct = false;
 		var allSolved = true;
@@ -853,7 +862,8 @@ client.on('message', msg => {
 		}
 		msg.delete(3000);
 	}
-	else if (hmactive && hmchannel == channel && msg.author.username != 'Wesbot' && strmsg == hmfullword) {
+	//else if (hmactive && hmchannel == channel && msg.author.username != 'Wesbot' && strmsg == hmfullword) {
+	else if (hmactive && hmchannel == channel && strmsg == hmfullword) {
 		hmactive = false;
 		hmmsg.edit({embed: {
 			color: 3447003,
@@ -898,26 +908,6 @@ client.on('message', msg => {
 		}
 	}
 	
-	//Play
-	/*res = strmsg.match('!play');
-	if (res == '!play') {
-		if (strmsg != '!play') {
-			var thing = strmsg.match('!play (.+)');
-			if (msg.author.username == "Wesbot") {
-			}
-			else {
-				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
-				var newthing = splitAt(1)(thing);
-				var value = newthing[1];
-				client.user.setPresence({ status: 'online', game: { name: value } });
-				channel.send(":white_check_mark: now playing " + value);
-			}
-		}
-		else {
-			channel.send(":x: You have to enter a game name");
-		}
-	}*/
-	
 	//Eco
 	res = strmsg.match('!eco set');
 	if (res == '!eco set') {
@@ -927,9 +917,9 @@ client.on('message', msg => {
 		}
 		else {
 			var thing = strmsg.match('!eco set (.+)');
-			if (msg.author.username == "Wesbot") {
-			}
-			else {
+			//if (msg.author.username == "Wesbot") {
+			//}
+			//else {
 				const splitAt = index => x => [x.slice(0, index), x.slice(index)]
 				var newthing = splitAt(1)(thing);
 				var value = newthing[1];
@@ -941,7 +931,7 @@ client.on('message', msg => {
 					}
 					channel.send("All balances set to $" + value);
 				});
-			}
+			//}
 		}
 		}
 		else {
@@ -1041,7 +1031,7 @@ client.on('message', msg => {
 	//res = strmsg.match('!wes');
 	//if (res == '!wes') {
 	if (convo && strmsg != '!convo') {
-		if (msg.author.username != 'Wesbot') {
+		//if (msg.author.username != 'Wesbot') {
 		var cleverMessage = "";
 		/*var thing = strmsg.match('!wes (.+)');
 			if (msg.author.username == "Wesbot") {
@@ -1055,7 +1045,7 @@ client.on('message', msg => {
 	cleverbot.write(strmsg, function (response) {
        channel.send(response.output);
     });
-	}
+	//}
 	}
 	
 	//Farm
