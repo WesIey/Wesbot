@@ -978,7 +978,10 @@ client.on('message', msg => {
 					var newthing = splitAt(1)(thing);
 					var value = newthing[1];
 					for (var i = 0; i < mentions.length; i++) {
+						channel.send("test/ Index: " + i);
+						channel.send("test/ Searching for UserID: " + mentions[i].id);
 						User.find({ 'UserID': mentions[i].id }, function (err, user) {
+							channel.send("test/ Setting bal to: " + value);
 							user.Balance = Number(value);
 							user.save();
 						});
