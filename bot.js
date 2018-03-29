@@ -1050,6 +1050,20 @@ client.on('message', msg => {
 			rarity = "Black Market";
 		}
 		channel.send("Test: " + rarity);
+		//Get item from DB and display it
+		Cc1.find({ Rarity: rarity }, function (err, items) {
+			if (err) return handleError(err);
+			var choose = Math.floor((Math.random() * items.length) + 0);
+			//Show vehicle (if "") don't show
+			const embed = new Discord.RichEmbed()
+			.setTitle("You got: " + items[choose].Name)
+			.setAuthor("CC1 Crate", "")
+			.setColor(3447003)
+			.addField("Rarity", items[choose].Rarity)
+			.addField("Type", items[choose].Type)
+			.setImage(items[choose].Icon)
+			channel.send({embed});
+		});
 	}
 	
 	//Help
