@@ -1053,7 +1053,7 @@ client.on('message', msg => {
 		//Get item from DB and display it
 		Cc1.find({ "Rarity": "Rare" }, function (err, cc1s) {
 			//var choose = Math.floor((Math.random() * cc1s.length) + 0);
-			channel.send("Test: " + cc1s[0].Name);
+			channel.send("Test: " + cc1s.Name);
 			//Show vehicle (if "") don't show
 			/*const embed = new Discord.RichEmbed()
 			.setTitle("You got: " + items[choose].Name)
