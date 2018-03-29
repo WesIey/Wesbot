@@ -1316,6 +1316,7 @@ client.on('message', msg => {
 					users[i].CCtwos = 0;
 					users[i].CCthrees = 0;
 					users[i].CCfours = 0;
+					users[i].save();
 				}
 				channel.send(":white_check_mark: Done");
 			});
