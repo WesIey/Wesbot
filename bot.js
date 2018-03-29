@@ -47,10 +47,10 @@ var UserSchema = mongoose.Schema({
   Level: Number,
   Xp: Number,
   Keys: Number,
-  CC1s: Number,
-  CC2s: Number,
-  CC3s: Number,
-  CC4s: Number
+  CCones: Number,
+  CCtwos: Number,
+  CCthrees: Number,
+  CCfours: Number
 });
 var User = mongoose.model('User', UserSchema);
 
@@ -154,7 +154,7 @@ client.on('guildMemberAdd', member => {
 	if (!channel) return;
 	// Send the message, mentioning the member
 	channel.send(`Welcome to the bestest discord server, ${member}`);
-	var newuser = new User({ UserID: member.id, Name: member.displayName, Balance: 100, Level: 0, Xp: 0 , Keys: 0, CC1s: 0, CC2s: 0, CC3s: 0, CC4s: 0});
+	var newuser = new User({ UserID: member.id, Name: member.displayName, Balance: 100, Level: 0, Xp: 0 , Keys: 0, CCones: 0, CCtwos: 0, CCthrees: 0, CCfours: 0});
 	newuser.save(function (err, newuser) {
 		if (err) return console.error(err);
 	});
@@ -759,7 +759,7 @@ client.on('message', msg => {
 			else {
 				var userid = mentions[0].id;
 				var name = mentions[0].username;
-				var newuser = new User({ UserID: userid, Name: name, Balance: 100, Level: 0, Xp: 0, Keys: 0, CC1s: 0, CC2s: 0, CC3s: 0, CC4s: 0 });
+				var newuser = new User({ UserID: userid, Name: name, Balance: 100, Level: 0, Xp: 0, Keys: 0, CCones: 0, CCtwos: 0, CCthrees: 0, CCfours: 0 });
 				newuser.save(function (err, newuser) {
 					if (err) return console.error(err);
 					channel.send(":white_check_mark: User " + mentions[0].username + " has been registered!");
@@ -1312,10 +1312,10 @@ client.on('message', msg => {
 			User.find({}, function (err, users) {
 				for (var i = 0, len = users.length; i < len; i++) {
 					users[i].Keys = 0;
-					users[i].CC1s = 0;
-					users[i].CC2s = 0;
-					users[i].CC3s = 0;
-					users[i].CC4s = 0;
+					users[i].CCones = 0;
+					users[i].CCtwos = 0;
+					users[i].CCthrees = 0;
+					users[i].CCfours = 0;
 				}
 				channel.send(":white_check_mark: Done");
 			}
