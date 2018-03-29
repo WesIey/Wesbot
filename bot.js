@@ -22,6 +22,8 @@
 	- crates
 	- skill points
 	- add ID's to crate items (for invs)
+	- use gifs for animated decals
+	- crate author
 */
 
 //Cleverbot source: cleverbot.com
@@ -67,6 +69,36 @@ var CconeSchema = mongoose.Schema({
 	Vehicle: String
 });
 var Ccone = mongoose.model('Ccone', CconeSchema);
+
+//CctwoSchema
+var CctwoSchema = mongoose.Schema({
+	Name: String,
+	Icon: String,
+	Rarity: String,
+	Type: String,
+	Vehicle: String
+});
+var Cctwo = mongoose.model('Cctwo', CctwoSchema);
+
+//CcthreeSchema
+var CcthreeSchema = mongoose.Schema({
+	Name: String,
+	Icon: String,
+	Rarity: String,
+	Type: String,
+	Vehicle: String
+});
+var Ccthree = mongoose.model('Ccthree', CcthreeSchema);
+
+//CcfourSchema
+var CcfourSchema = mongoose.Schema({
+	Name: String,
+	Icon: String,
+	Rarity: String,
+	Type: String,
+	Vehicle: String
+});
+var Ccfour = mongoose.model('Ccfour', CcfourSchema);
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -1030,7 +1062,9 @@ client.on('message', msg => {
 	}
 	
 	//Crates
-	if (strmsg === '!crate') {
+	res = strmsg.match('!crate');
+	if (res == '!crate') {
+	if (strmsg === '!crate cc1') {
 		//CC1
 		var rand = Math.floor((Math.random() * 1000) + 1);
 		var rarity = "";
@@ -1062,6 +1096,120 @@ client.on('message', msg => {
 			.setImage(ccones[choose].Icon)
 			channel.send({embed});
 		});
+	}
+	else if (strmsg === '!crate cc2') {
+		//CC2
+		var rand = Math.floor((Math.random() * 1000) + 1);
+		var rarity = "";
+		//Random rarity
+		if (rand <= 542) {
+			rarity = "Rare";
+		}
+		else if (rand <= 820) {
+			rarity = "Very Rare";
+		}
+		else if (rand <= 945) {
+			rarity = "Import";
+		}
+		else if (rand <= 986) {
+			rarity = "Exotic";
+		}
+		else {
+			rarity = "Black Market";
+		}
+		Cctwo.find({ 'Rarity': rarity }, function (err, cctwos) {
+			var choose = Math.floor((Math.random() * cctwos.length) + 0);
+			//Show vehicle (if "") don't show
+			const embed = new Discord.RichEmbed()
+			.setTitle("You got: " + cctwos[choose].Name)
+			.setAuthor("CC2 Crate", "")
+			.setColor(3447003)
+			.addField("Rarity", cctwos[choose].Rarity)
+			.addField("Type", cctwos[choose].Type)
+			.setImage(cctwos[choose].Icon)
+			channel.send({embed});
+		});
+	}
+	else if (strmsg === '!crate cc3') {
+		//CC3
+		var rand = Math.floor((Math.random() * 1000) + 1);
+		var rarity = "";
+		//Random rarity
+		if (rand <= 573) {
+			rarity = "Rare";
+		}
+		else if (rand <= 868) {
+			rarity = "Very Rare";
+		}
+		else if (rand <= 959) {
+			rarity = "Import";
+		}
+		else if (rand <= 988) {
+			rarity = "Exotic";
+		}
+		else {
+			rarity = "Black Market";
+		}
+		Ccthree.find({ 'Rarity': rarity }, function (err, ccthrees) {
+			var choose = Math.floor((Math.random() * ccthrees.length) + 0);
+			//Show vehicle (if "") don't show
+			const embed = new Discord.RichEmbed()
+			.setTitle("You got: " + ccthrees[choose].Name)
+			.setAuthor("CC1 Crate", "")
+			.setColor(3447003)
+			.addField("Rarity", ccthrees[choose].Rarity)
+			.addField("Type", ccthrees[choose].Type)
+			.setImage(ccthrees[choose].Icon)
+			channel.send({embed});
+		});
+	}
+	else if (strmsg === '!crate cc4') {
+		//CC4
+		var rand = Math.floor((Math.random() * 1000) + 1);
+		var rarity = "";
+		//Random rarity
+		if (rand <= 557) {
+			rarity = "Rare";
+		}
+		else if (rand <= 826) {
+			rarity = "Very Rare";
+		}
+		else if (rand <= 958) {
+			rarity = "Import";
+		}
+		else if (rand <= 994) {
+			rarity = "Exotic";
+		}
+		else {
+			rarity = "Black Market";
+		}
+		Ccfour.find({ 'Rarity': rarity }, function (err, ccfours) {
+			var choose = Math.floor((Math.random() * ccfours.length) + 0);
+			//Show vehicle (if "") don't show
+			const embed = new Discord.RichEmbed()
+			.setTitle("You got: " + ccfours[choose].Name)
+			.setAuthor("CC1 Crate", "")
+			.setColor(3447003)
+			.addField("Rarity", ccfours[choose].Rarity)
+			.addField("Type", ccfours[choose].Type)
+			.setImage(ccfours[choose].Icon)
+			channel.send({embed});
+		});
+	}
+	else if (strmsg === '!crate') {
+		var errormsg = ":x: Please enter what crate to open (CC1, CC2, CC3, CC4)";
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
+			msg.delete(3000);
+	}
+	else {
+		var errormsg = ":x: Command usage: \"!crate <cratename>\"";
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
+			msg.delete(3000);
+	}
 	}
 	
 	//Help
