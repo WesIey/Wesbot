@@ -1040,7 +1040,7 @@ client.on('message', msg => {
 	//Crates
 	if (strmsg === '!crate') {
 		//CC1
-		var rand = Math.floor((Math.random() * 1000) + 1);
+		/*var rand = Math.floor((Math.random() * 1000) + 1);
 		var rarity = "";
 		//Random rarity
 		if (rand <= 542) {
@@ -1057,7 +1057,7 @@ client.on('message', msg => {
 		}
 		else {
 			rarity = "Black Market";
-		}
+		}*/
 		/*Ccone.findOne({}, function (err, ccone) {
 			if (err) return handleError(err);
 			channel.send(ccone.Name);
@@ -1078,18 +1078,19 @@ client.on('message', msg => {
 				}
 			);
 		});*/
-		Ccone.find({ 'Rarity': rarity }, function (err, ccones) {
-			var choose = Math.floor((Math.random() * ccones.length) + 0);
+		Ccone.find({}, function (err, ccones) {
+			channel.send(ccones[0].Name);
+			//var choose = Math.floor((Math.random() * ccones.length) + 0);
 			//channel.send("Test: " + cc1s.Name);
 			//Show vehicle (if "") don't show
-			const embed = new Discord.RichEmbed()
+			/*const embed = new Discord.RichEmbed()
 			.setTitle("You got: " + ccones[choose].Name)
 			.setAuthor("CC1 Crate", "")
 			.setColor(3447003)
 			.addField("Rarity", ccones[choose].Rarity)
 			.addField("Type", ccones[choose].Type)
 			.setImage(ccones[choose].Icon)
-			channel.send({embed});
+			channel.send({embed});*/
 		});
 		/*Cc1.findOne({}, function (err, cc1) {
 			if (err) return handleError(err);
