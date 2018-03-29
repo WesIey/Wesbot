@@ -1107,9 +1107,7 @@ client.on('message', msg => {
 	}
 	
 	//Crates
-	res = strmsg.match('!crate');
-	if (res == '!crate') {
-	if (strmsg === '!crate cc1') {
+	if (strmsg === '!crate open cc1') {
 		//CC1
 		var rand = Math.floor((Math.random() * 1000) + 1);
 		var rarity = "";
@@ -1142,7 +1140,7 @@ client.on('message', msg => {
 			channel.send({embed});
 		});
 	}
-	else if (strmsg === '!crate cc2') {
+	else if (strmsg === '!crate open cc2') {
 		//CC2
 		var rand = Math.floor((Math.random() * 1000) + 1);
 		var rarity = "";
@@ -1175,7 +1173,7 @@ client.on('message', msg => {
 			channel.send({embed});
 		});
 	}
-	else if (strmsg === '!crate cc3') {
+	else if (strmsg === '!crate open cc3') {
 		//CC3
 		var rand = Math.floor((Math.random() * 1000) + 1);
 		var rarity = "";
@@ -1208,7 +1206,7 @@ client.on('message', msg => {
 			channel.send({embed});
 		});
 	}
-	else if (strmsg === '!crate cc4') {
+	else if (strmsg === '!crate open cc4') {
 		//CC4
 		var rand = Math.floor((Math.random() * 1000) + 1);
 		var rarity = "";
@@ -1241,20 +1239,74 @@ client.on('message', msg => {
 			channel.send({embed});
 		});
 	}
-	else if (strmsg === '!crate') {
-		var errormsg = ":x: Please enter what crate to open (CC1, CC2, CC3, CC4)";
+	if (strmsg === '!crates') {
+		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
+			channel.send({embed: {
+				color: 3447003,
+				author: {
+					name: user.Name,
+					icon_url: msg.author.avatarURL
+				},
+				title: 'CC1',
+				description: ':card_box: ' + user.CCones,
+				fields: [{
+					name: 'CC2',
+					value: ':card_box: ' + user.CCtwos
+				}, {
+					name: 'CC3',
+					value: ':card_box: ' + user.CCthrees
+				}, {
+					name: 'CC4',
+					value: 'card_box: ' + user.CCfours
+				}]
+			}});
+		});
+	}
+	
+	//Keys
+	res = strmsg.match('!keys buy');
+	if (res = '!keys buy') {
+		var thing = strmsg.match('!keys buy (.+)');
+		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
+		var newthing = splitAt(1)(thing);
+		var value = Number(newthing[1]);
+		var price = value * 100;
+		if (value >= 1) {
+			User.findOne({ 'UserID': msg.author.id }, function (err, user) {
+				if (err) return handleError(err);
+				if (user.Balance >= price) {
+					user.Keys = user.Keys + value;
+					user.Balance = user.Balance - price;
+					user.save();
+				}
+				else {
+					var errormsg = ":x: You don't have enough money to afford this purchase";
+					channel.send(errormsg).then(errmsg => {
+						errmsg.delete(3000)
+					})
+					msg.delete(3000);
+				}
+			});
+		}
+		else {
+			var errormsg = ":x: You have to buy at least 1 key";
 			channel.send(errormsg).then(errmsg => {
 				errmsg.delete(3000)
 			})
 			msg.delete(3000);
+		}
 	}
-	else {
-		var errormsg = ":x: Command usage: \"!crate <cratename>\"";
-			channel.send(errormsg).then(errmsg => {
-				errmsg.delete(3000)
-			})
-			msg.delete(3000);
-	}
+	if (strmsg === '!keys') {
+		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
+			channel.send({embed: {
+				color: 3447003,
+				author: {
+					name: user.Name,
+					icon_url: msg.author.avatarURL
+				},
+				title: ':key: Keys: ' + user.Keys
+			}});
+		});
 	}
 	
 	//Help
