@@ -1411,7 +1411,7 @@ client.on('message', msg => {
 					channel.send(":white_check_mark: Bought " + value + " keys");
 				}
 				else {
-					var errormsg = ":x: You don't have enough money to afford this purchase";
+					var errormsg = ":x: You don't have enough money to afford this purchase ($100 per key)";
 					channel.send(errormsg).then(errmsg => {
 						errmsg.delete(3000)
 					})
@@ -1473,6 +1473,18 @@ client.on('message', msg => {
 			}, {
 				name: "!stats",
 				value: "Displays your stats"
+			}, {
+				name: "!crates",
+				value: "Displays your crates"
+			}, {
+				name: "!crate open <name>",
+				value: "Opens crate"
+			}, {
+				name: "!keys",
+				value: "Displays your keys"
+			}, {
+				name: "!keys buy <amount>",
+				value: "Buys keys"
 			}]
 		}});
 	}
