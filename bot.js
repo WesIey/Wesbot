@@ -27,6 +27,7 @@
 	- use keys
 	- random crates
 	- kits
+	- keys/crates amount
 */
 
 //Cleverbot source: cleverbot.com
@@ -276,6 +277,42 @@ client.on('message', msg => {
 			var findmsg = {embed: {
 				color: 3447003,
 				title: ':moneybag: ' + user.Name + " Got lucky and found $" + money
+			}};
+			channel.send(findmsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
+		});
+	}
+	
+	//Find crates
+	if (Math.floor((Math.random() * 100) + 0) < 2) {
+		var cratech = Math.floor((Math.random() * 4) + 1);
+		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
+			if (err) return handleError(err);
+			var cratetype = "";
+			if (cratech == 1) {
+				user.CCones = user.CCones + 1;
+				user.save();
+				cratetype = "CC1";
+			}
+			else if (cratech == 2) {
+				user.CCtwos = user.CCtwos + 1;
+				user.save();
+				cratetype = "CC2";
+			}
+			else if (cratech == 3) {
+				user.CCthrees = user.CCthrees + 1;
+				user.save();
+				cratetype = "CC3";
+			}
+			else if (cratech == 4) {
+				user.CCfours = user.CCfours + 1;
+				user.save();
+				cratetype = "CC4";
+			}
+			var findmsg = {embed: {
+				color: 3447003,
+				title: ':card_box: ' + user.Name + " Got lucky and found a " + cratetype + " crate"
 			}};
 			channel.send(findmsg).then(errmsg => {
 				errmsg.delete(3000)
@@ -1320,6 +1357,13 @@ client.on('message', msg => {
 				}
 				channel.send(":white_check_mark: Done");
 			});
+		}
+		else {
+			var errormsg = ":x: Permission denied";
+			channel.send(errormsg).then(errmsg => {
+				errmsg.delete(3000)
+			})
+			msg.delete(3000);
 		}
 	}
 	
