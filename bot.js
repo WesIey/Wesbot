@@ -67,6 +67,15 @@ var Cc1Schema = mongoose.Schema({
 });
 var Cc1 = mongoose.model('Cc1', Cc1Schema);
 
+var CconeSchema = mongoose.Schema({
+	Name: String,
+	Icon: String,
+	Rarity: String,
+	Type: String,
+	Vehicle: String
+});
+var Ccone = mongoose.model('Ccone', CconeSchema);
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
@@ -1049,9 +1058,9 @@ client.on('message', msg => {
 		else {
 			rarity = "Black Market";
 		}*/
-		Cc1.findOne({}, function (err, cc1) {
+		Ccone.findOne({}, function (err, ccone) {
 			if (err) return handleError(err);
-			channel.send(cc1.Name);
+			channel.send(ccone.Name);
 		});
 		//channel.send("Test: " + rarity);
 		//Get item from DB and display it
