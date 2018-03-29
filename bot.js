@@ -18,6 +18,10 @@
 	- xplevel switch case
 	- timeout games
 	- remaining convo calls, add to settings
+	- health
+	- crates
+	- skill points
+	- add ID's to crate items (for invs)
 */
 
 //Cleverbot source: cleverbot.com
@@ -53,6 +57,15 @@ var WordSchema = mongoose.Schema({
 	WordNr: Number
 });
 var Word = mongoose.model('Word', WordSchema);
+
+var Cc1Schema = mongoose.Schema({
+	Name: String,
+	Icon: String,
+	Rarity: String,
+	Type: String,
+	Vehicle: String
+});
+var Cc1 = mongoose.model('Cc1', Cc1Schema);
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -1013,6 +1026,30 @@ client.on('message', msg => {
 			})
 			msg.delete(3000);
 		}
+	}
+	
+	//Crates
+	if (strmsg === '!crate') {
+		//CC1
+		var rand = Math.floor((Math.random() * 1000) + 1);
+		var rarity = "";
+		//Random rarity
+		if (rand <= 542) {
+			rarity = "Rare";
+		}
+		else if (rand <= 820) {
+			rarity = "Very Rare";
+		}
+		else if (rand <= 945) {
+			rarity = "Import";
+		}
+		else if (rand <= 986) {
+			rarity = "Exotic";
+		}
+		else {
+			rarity = "Black Market";
+		}
+		channel.send("Test: " + rarity);
 	}
 	
 	//Help
