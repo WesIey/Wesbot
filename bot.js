@@ -1061,7 +1061,7 @@ client.on('message', msg => {
 			User.findOne().skip(random).exec(
 				function (err, result) {
 					// Tada! random user
-					channel.send(result.name);
+					channel.send(result.Name);
 				}
 			);
 		});
