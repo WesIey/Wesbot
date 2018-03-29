@@ -1247,7 +1247,7 @@ client.on('message', msg => {
 					name: user.Name,
 					icon_url: msg.author.avatarURL
 				},
-				title: 'Crates'
+				title: 'Crates',
 				fields: [{
 					name: 'CC1',
 					value: ':card_box: ' + user.CCones
