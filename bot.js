@@ -1052,7 +1052,7 @@ client.on('message', msg => {
 		//channel.send("Test: " + rarity);
 		//Get item from DB and display it
 		// Get the count of all users
-		/*Cc1.count().exec(function (err, count) {
+		Cc1.count().exec(function (err, count) {
 
 			// Get a random entry
 			var random = Math.floor(Math.random() * count);
@@ -1064,10 +1064,10 @@ client.on('message', msg => {
 					channel.send(result.name);
 				}
 			);
-		});*/
+		});
 		//Cc1.find({ "Rarity": "Rare" }, function (err, cc1s) {
 			//var choose = Math.floor((Math.random() * cc1s.length) + 0);
-			channel.send("Test: " + cc1s.Name);
+			//channel.send("Test: " + cc1s.Name);
 			//Show vehicle (if "") don't show
 			/*const embed = new Discord.RichEmbed()
 			.setTitle("You got: " + items[choose].Name)
@@ -1078,10 +1078,10 @@ client.on('message', msg => {
 			.setImage(items[choose].Icon)
 			channel.send({embed});*/
 		//});
-		Cc1.findOne({}, function (err, cc1) {
+		/*Cc1.findOne({}, function (err, cc1) {
 			if (err) return handleError(err);
 			channel.send(cc1.Name);
-		});
+		});*/
 	}
 	
 	//Help
