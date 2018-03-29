@@ -1108,24 +1108,34 @@ client.on('message', msg => {
 	
 	//Crates
 	if (strmsg === '!crate open cc1') {
+		var sellmoney = 0;
+		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
+			if (err) return handleError(err);
+			if (user.Keys >= 1) {
+				if (user.CCones >= 1) {
 		//CC1
 		var rand = Math.floor((Math.random() * 1000) + 1);
 		var rarity = "";
 		//Random rarity
 		if (rand <= 542) {
 			rarity = "Rare";
+			sellmoney = 50;
 		}
 		else if (rand <= 820) {
 			rarity = "Very Rare";
+			sellmoney = 100;
 		}
 		else if (rand <= 945) {
 			rarity = "Import";
+			sellmoney = 300;
 		}
 		else if (rand <= 986) {
 			rarity = "Exotic";
+			sellmoney = 500;
 		}
 		else {
 			rarity = "Black Market";
+			sellmoney = 1500;
 		}
 		Ccone.find({ 'Rarity': rarity }, function (err, ccones) {
 			var choose = Math.floor((Math.random() * ccones.length) + 0);
@@ -1136,29 +1146,61 @@ client.on('message', msg => {
 			.setColor(3447003)
 			.addField("Rarity", ccones[choose].Rarity)
 			.addField("Type", ccones[choose].Type)
+			.addField("Sold for", "$" + sellmoney.toLocaleString())
 			.setImage(ccones[choose].Icon)
 			channel.send({embed});
 		});
+		user.Keys = user.Keys - 1;
+		user.CCones = user.CCones - 1;
+		user.Balance = user.Balance + sellmoney;
+		user.save();
+			}
+			else {
+				var errormsg = ":x: You don't have any CC1 crates!";
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
+				msg.delete(3000);
+			}
+			}
+			else {
+				var errormsg = ":x: You don't have any keys!";
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
+				msg.delete(3000);
+			}
+		});
 	}
 	else if (strmsg === '!crate open cc2') {
+		var sellmoney = 0;
+		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
+			if (err) return handleError(err);
+			if (user.Keys >= 1) {
+				if (user.CCtwos >= 1) {
 		//CC2
 		var rand = Math.floor((Math.random() * 1000) + 1);
 		var rarity = "";
 		//Random rarity
 		if (rand <= 542) {
 			rarity = "Rare";
+			sellmoney = 50;
 		}
 		else if (rand <= 820) {
 			rarity = "Very Rare";
+			sellmoney = 100;
 		}
 		else if (rand <= 945) {
 			rarity = "Import";
+			sellmoney = 300;
 		}
 		else if (rand <= 986) {
 			rarity = "Exotic";
+			sellmoney = 500;
 		}
 		else {
 			rarity = "Black Market";
+			sellmoney = 1500;
 		}
 		Cctwo.find({ 'Rarity': rarity }, function (err, cctwos) {
 			var choose = Math.floor((Math.random() * cctwos.length) + 0);
@@ -1169,29 +1211,61 @@ client.on('message', msg => {
 			.setColor(3447003)
 			.addField("Rarity", cctwos[choose].Rarity)
 			.addField("Type", cctwos[choose].Type)
+			.addField("Sold for", "$" + sellmoney.toLocaleString())
 			.setImage(cctwos[choose].Icon)
 			channel.send({embed});
 		});
+		user.Keys = user.Keys - 1;
+		user.CCtwos = user.CCtwos - 1;
+		user.Balance = user.Balance + sellmoney;
+		user.save();
+		}
+			else {
+				var errormsg = ":x: You don't have any CC2 crates!";
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
+				msg.delete(3000);
+			}
+			}
+			else {
+				var errormsg = ":x: You don't have any keys!";
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
+				msg.delete(3000);
+			}
+		});
 	}
 	else if (strmsg === '!crate open cc3') {
+		var sellmoney = 0;
+		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
+			if (err) return handleError(err);
+			if (user.Keys >= 1) {
+				if (user.CCthrees >= 1) {
 		//CC3
 		var rand = Math.floor((Math.random() * 1000) + 1);
 		var rarity = "";
 		//Random rarity
 		if (rand <= 573) {
 			rarity = "Rare";
+			sellmoney = 50;
 		}
 		else if (rand <= 868) {
 			rarity = "Very Rare";
+			sellmoney = 100;
 		}
 		else if (rand <= 959) {
 			rarity = "Import";
+			sellmoney = 300;
 		}
 		else if (rand <= 988) {
 			rarity = "Exotic";
+			sellmoney = 500;
 		}
 		else {
 			rarity = "Black Market";
+			sellmoney = 1500;
 		}
 		Ccthree.find({ 'Rarity': rarity }, function (err, ccthrees) {
 			var choose = Math.floor((Math.random() * ccthrees.length) + 0);
@@ -1202,29 +1276,61 @@ client.on('message', msg => {
 			.setColor(3447003)
 			.addField("Rarity", ccthrees[choose].Rarity)
 			.addField("Type", ccthrees[choose].Type)
+			.addField("Sold for", "$" + sellmoney.toLocaleString())
 			.setImage(ccthrees[choose].Icon)
 			channel.send({embed});
 		});
+		user.Keys = user.Keys - 1;
+		user.CCthrees = user.CCthrees - 1;
+		user.Balance = user.Balance + sellmoney;
+		user.save();
+		}
+			else {
+				var errormsg = ":x: You don't have any CC3 crates!";
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
+				msg.delete(3000);
+			}
+			}
+			else {
+				var errormsg = ":x: You don't have any keys!";
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
+				msg.delete(3000);
+			}
+		});
 	}
 	else if (strmsg === '!crate open cc4') {
+		var sellmoney = 0;
+		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
+			if (err) return handleError(err);
+			if (user.Keys >= 1) {
+				if (user.CCfours >= 1) {
 		//CC4
 		var rand = Math.floor((Math.random() * 1000) + 1);
 		var rarity = "";
 		//Random rarity
 		if (rand <= 557) {
 			rarity = "Rare";
+			sellmoney = 50;
 		}
 		else if (rand <= 826) {
 			rarity = "Very Rare";
+			sellmoney = 100;
 		}
 		else if (rand <= 958) {
 			rarity = "Import";
+			sellmoney = 300;
 		}
 		else if (rand <= 994) {
 			rarity = "Exotic";
+			sellmoney = 500;
 		}
 		else {
 			rarity = "Black Market";
+			sellmoney = 1500;
 		}
 		Ccfour.find({ 'Rarity': rarity }, function (err, ccfours) {
 			var choose = Math.floor((Math.random() * ccfours.length) + 0);
@@ -1235,8 +1341,30 @@ client.on('message', msg => {
 			.setColor(3447003)
 			.addField("Rarity", ccfours[choose].Rarity)
 			.addField("Type", ccfours[choose].Type)
+			.addField("Sold for", "$" + sellmoney.toLocaleString())
 			.setImage(ccfours[choose].Icon)
 			channel.send({embed});
+		});
+		user.Keys = user.Keys - 1;
+		user.CCfours = user.CCfours - 1;
+		user.Balance = user.Balance + sellmoney;
+		user.save();
+		}
+			else {
+				var errormsg = ":x: You don't have any CC4 crates!";
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
+				msg.delete(3000);
+			}
+			}
+			else {
+				var errormsg = ":x: You don't have any keys!";
+				channel.send(errormsg).then(errmsg => {
+					errmsg.delete(3000)
+				})
+				msg.delete(3000);
+			}
 		});
 	}
 	if (strmsg === '!crates') {
