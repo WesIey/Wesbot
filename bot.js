@@ -1051,7 +1051,21 @@ client.on('message', msg => {
 		}
 		//channel.send("Test: " + rarity);
 		//Get item from DB and display it
-		Cc1.find({ "Rarity": "Rare" }, function (err, cc1s) {
+		// Get the count of all users
+		Cc1.count().exec(function (err, count) {
+
+			// Get a random entry
+			var random = Math.floor(Math.random() * count);
+
+			// Again query all users but only fetch one offset by our random #
+			User.findOne().skip(random).exec(
+				function (err, result) {
+					// Tada! random user
+					channel.send(result.name);
+				}
+			);
+		});
+		//Cc1.find({ "Rarity": "Rare" }, function (err, cc1s) {
 			//var choose = Math.floor((Math.random() * cc1s.length) + 0);
 			channel.send("Test: " + cc1s.Name);
 			//Show vehicle (if "") don't show
@@ -1063,7 +1077,7 @@ client.on('message', msg => {
 			.addField("Type", items[choose].Type)
 			.setImage(items[choose].Icon)
 			channel.send({embed});*/
-		});
+		//});
 	}
 	
 	//Help
