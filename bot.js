@@ -1031,7 +1031,7 @@ client.on('message', msg => {
 	//Crates
 	if (strmsg === '!crate') {
 		//CC1
-		var rand = Math.floor((Math.random() * 1000) + 1);
+		/*var rand = Math.floor((Math.random() * 1000) + 1);
 		var rarity = "";
 		//Random rarity
 		if (rand <= 542) {
@@ -1048,7 +1048,11 @@ client.on('message', msg => {
 		}
 		else {
 			rarity = "Black Market";
-		}
+		}*/
+		Cc1.findOne({}, function (err, cc1) {
+			if (err) return handleError(err);
+			channel.send(cc1.Name);
+		});
 		//channel.send("Test: " + rarity);
 		//Get item from DB and display it
 		// Get the count of all users
@@ -1078,10 +1082,10 @@ client.on('message', msg => {
 			.setImage(items[choose].Icon)
 			channel.send({embed});*/
 		//});
-		Cc1.findOne({}, function (err, cc1) {
+		/*Cc1.findOne({}, function (err, cc1) {
 			if (err) return handleError(err);
 			channel.send(cc1.Name);
-		});
+		});*/
 	}
 	
 	//Help
