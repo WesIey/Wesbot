@@ -45,12 +45,12 @@ var UserSchema = mongoose.Schema({
   Name: String,
   Balance: Number,
   Level: Number,
-  Xp: Number,
+  Xp: Number/*,
   Keys: Number,
   CCones: Number,
   CCtwos: Number,
   CCthrees: Number,
-  CCfours: Number
+  CCfours: Number*/
 });
 var User = mongoose.model('User', UserSchema);
 
