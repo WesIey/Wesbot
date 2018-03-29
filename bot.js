@@ -58,15 +58,7 @@ var WordSchema = mongoose.Schema({
 });
 var Word = mongoose.model('Word', WordSchema);
 
-var Cc1Schema = mongoose.Schema({
-	Name: String,
-	Icon: String,
-	Rarity: String,
-	Type: String,
-	Vehicle: String
-});
-var Cc1 = mongoose.model('Cc1', Cc1Schema);
-
+//CconeSchema
 var CconeSchema = mongoose.Schema({
 	Name: String,
 	Icon: String,
@@ -1058,30 +1050,8 @@ client.on('message', msg => {
 		else {
 			rarity = "Black Market";
 		}
-		/*Ccone.findOne({}, function (err, ccone) {
-			if (err) return handleError(err);
-			channel.send(ccone.Name);
-		});*/
-		//channel.send("Test: " + rarity);
-		//Get item from DB and display it
-		// Get the count of all users
-		/*Cc1.count().exec(function (err, count) {
-
-			// Get a random entry
-			var random = Math.floor(Math.random() * count);
-
-			// Again query all users but only fetch one offset by our random #
-			Cc1.findOne().skip(random).exec(
-				function (err, result) {
-					// Tada! random user
-					channel.send(result.Name);
-				}
-			);
-		});*/
 		Ccone.find({ 'Rarity': rarity }, function (err, ccones) {
-			//channel.send(ccones[0].Name);
 			var choose = Math.floor((Math.random() * ccones.length) + 0);
-			//channel.send("Test: " + cc1s.Name);
 			//Show vehicle (if "") don't show
 			const embed = new Discord.RichEmbed()
 			.setTitle("You got: " + ccones[choose].Name)
@@ -1092,10 +1062,6 @@ client.on('message', msg => {
 			.setImage(ccones[choose].Icon)
 			channel.send({embed});
 		});
-		/*Cc1.findOne({}, function (err, cc1) {
-			if (err) return handleError(err);
-			channel.send(cc1.Name);
-		});*/
 	}
 	
 	//Help
