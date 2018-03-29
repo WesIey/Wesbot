@@ -1058,7 +1058,7 @@ client.on('message', msg => {
 			var random = Math.floor(Math.random() * count);
 
 			// Again query all users but only fetch one offset by our random #
-			User.findOne().skip(random).exec(
+			Cc1.findOne().skip(random).exec(
 				function (err, result) {
 					// Tada! random user
 					channel.send(result.Name);
