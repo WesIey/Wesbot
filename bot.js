@@ -1078,7 +1078,8 @@ client.on('message', msg => {
 			.setImage(items[choose].Icon)
 			channel.send({embed});*/
 		//});
-		Cc1.findOne({ Rarity: "Rare" }, function (err, cc1) {
+		Cc1.findOne({}, function (err, cc1) {
+			if (err) return handleError(err);
 			channel.send(cc1.Name);
 		});
 	}
