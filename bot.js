@@ -1257,7 +1257,7 @@ client.on('message', msg => {
 					value: ':card_box: ' + user.CCthrees
 				}, {
 					name: 'CC4',
-					value: 'card_box: ' + user.CCfours
+					value: ':card_box: ' + user.CCfours
 				}]
 			}});
 		});
