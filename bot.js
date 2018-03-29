@@ -1078,7 +1078,7 @@ client.on('message', msg => {
 				}
 			);
 		});*/
-		Ccone.find({}, function (err, ccones) {
+		Ccone.find({ 'Rarity': "Import"}, function (err, ccones) {
 			channel.send(ccones[0].Name);
 			//var choose = Math.floor((Math.random() * ccones.length) + 0);
 			//channel.send("Test: " + cc1s.Name);
