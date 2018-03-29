@@ -1280,6 +1280,7 @@ client.on('message', msg => {
 					user.Keys = user.Keys + value;
 					user.Balance = user.Balance - price;
 					user.save();
+					channel.send(":white_check_mark: Bought " + value + " keys");
 				}
 				else {
 					var errormsg = ":x: You don't have enough money to afford this purchase";
