@@ -1239,7 +1239,7 @@ client.on('message', msg => {
 			channel.send({embed});
 		});
 	}
-	if (strmsg === '!crates') {
+	/*if (strmsg === '!crates') {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 			channel.send({embed: {
 				color: 3447003,
@@ -1261,7 +1261,7 @@ client.on('message', msg => {
 				}]
 			}});
 		});
-	}
+	}*/
 	
 	//Keys
 	res = strmsg.match('!keys buy');
