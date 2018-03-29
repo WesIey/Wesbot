@@ -1051,18 +1051,18 @@ client.on('message', msg => {
 		}
 		channel.send("Test: " + rarity);
 		//Get item from DB and display it
-		Cc1.find({ 'Rarity': String(rarity) }, function (err, items) {
-			var choose = Math.floor((Math.random() * items.length) + 0);
-			channel.send("Test: " + items[0].Name);
+		Cc1.find({ "Rarity": rarity }, function (err, cc1s) {
+			//var choose = Math.floor((Math.random() * cc1s.length) + 0);
+			channel.send("Test: " + cc1s[0].Name);
 			//Show vehicle (if "") don't show
-			const embed = new Discord.RichEmbed()
+			/*const embed = new Discord.RichEmbed()
 			.setTitle("You got: " + items[choose].Name)
 			.setAuthor("CC1 Crate", "")
 			.setColor(3447003)
 			.addField("Rarity", items[choose].Rarity)
 			.addField("Type", items[choose].Type)
 			.setImage(items[choose].Icon)
-			channel.send({embed});
+			channel.send({embed});*/
 		});
 	}
 	
