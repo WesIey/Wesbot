@@ -1264,7 +1264,7 @@ client.on('message', msg => {
 	}*/
 	
 	//Keys
-	res = strmsg.match('!keys buy');
+	/*res = strmsg.match('!keys buy');
 	if (res = '!keys buy') {
 		var thing = strmsg.match('!keys buy (.+)');
 		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
@@ -1295,7 +1295,7 @@ client.on('message', msg => {
 			})
 			msg.delete(3000);
 		}
-	}
+	}*/
 	if (strmsg === '!keys') {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
 			channel.send({embed: {
