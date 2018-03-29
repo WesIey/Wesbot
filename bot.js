@@ -1089,7 +1089,7 @@ client.on('message', msg => {
 			//Show vehicle (if "") don't show
 			const embed = new Discord.RichEmbed()
 			.setTitle("You got: " + ccones[choose].Name)
-			.setAuthor("CC1 Crate", "")
+			.setAuthor("CC1 Crate", msg.author.avatarURL)
 			.setColor(3447003)
 			.addField("Rarity", ccones[choose].Rarity)
 			.addField("Type", ccones[choose].Type)
@@ -1122,7 +1122,7 @@ client.on('message', msg => {
 			//Show vehicle (if "") don't show
 			const embed = new Discord.RichEmbed()
 			.setTitle("You got: " + cctwos[choose].Name)
-			.setAuthor("CC2 Crate", "")
+			.setAuthor("CC2 Crate", msg.author.avatarURL)
 			.setColor(3447003)
 			.addField("Rarity", cctwos[choose].Rarity)
 			.addField("Type", cctwos[choose].Type)
@@ -1155,7 +1155,7 @@ client.on('message', msg => {
 			//Show vehicle (if "") don't show
 			const embed = new Discord.RichEmbed()
 			.setTitle("You got: " + ccthrees[choose].Name)
-			.setAuthor("CC3 Crate", "")
+			.setAuthor("CC3 Crate", msg.author.avatarURL)
 			.setColor(3447003)
 			.addField("Rarity", ccthrees[choose].Rarity)
 			.addField("Type", ccthrees[choose].Type)
@@ -1188,7 +1188,7 @@ client.on('message', msg => {
 			//Show vehicle (if "") don't show
 			const embed = new Discord.RichEmbed()
 			.setTitle("You got: " + ccfours[choose].Name)
-			.setAuthor("CC4 Crate", "")
+			.setAuthor("CC4 Crate", msg.author.avatarURL)
 			.setColor(3447003)
 			.addField("Rarity", ccfours[choose].Rarity)
 			.addField("Type", ccfours[choose].Type)
