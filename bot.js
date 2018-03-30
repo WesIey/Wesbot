@@ -1485,7 +1485,7 @@ client.on('message', msg => {
 				name: client.user.username,
 				icon_url: client.user.avatarURL
 			},
-			title: "Commands",
+			title: "Crate commands",
 			fields: [{
 				name: "!crates",
 				value: "Displays your crates"
