@@ -1447,16 +1447,16 @@ client.on('message', msg => {
 			},
 			title: "Commands",
 			fields: [{
-				name: "!hl <bet>",
+				name: "!hl <bet> :arrow_up::arrow_down:",
 				value: "Starts a game of higher-lower"
 			}, {
-				name: "!insult <@user>",
+				name: "!insult <@user> :point_right::ok_hand:",
 				value: "Insults the mentioned user"
 			}, {
-				name: "!bal",
+				name: "!bal :moneybag:",
 				value: "Displays your balance"
 			}, {
-				name: "!baltop",
+				name: "!baltop :moneybag:",
 				value: "Displays top 5 balances"
 			}, {
 				name: "!hf <@user> <bet>",
@@ -1471,7 +1471,7 @@ client.on('message', msg => {
 				name: "!stats",
 				value: "Displays your stats"
 			}, {
-				name: "!help crates",
+				name: "!help crates :card_box:",
 				value: "Displays commands regarding crates"
 			}]
 		}});
@@ -1487,16 +1487,16 @@ client.on('message', msg => {
 			},
 			title: "Crate commands",
 			fields: [{
-				name: "!crates",
+				name: "!crates :card_box:",
 				value: "Displays your crates"
 			}, {
-				name: "!crate open <name>",
+				name: "!crate open <name> :outbox_tray:",
 				value: "Opens crate"
 			}, {
-				name: "!keys",
+				name: "!keys :key:",
 				value: "Displays your keys"
 			}, {
-				name: "!keys buy <amount>",
+				name: "!keys buy <amount> :key:",
 				value: "Buys keys"
 			}]
 		}});
