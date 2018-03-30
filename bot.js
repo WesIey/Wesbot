@@ -22,12 +22,9 @@
 	- skill points
 	- add ID's to crate items (for invs)
 	- use gifs for animated decals
-	- sell items
-	- buy keys
-	- use keys
-	- random crates
 	- kits
-	- keys/crates amount
+	- split up help
+	- spawn crates
 */
 
 //Cleverbot source: cleverbot.com
@@ -1474,6 +1471,22 @@ client.on('message', msg => {
 				name: "!stats",
 				value: "Displays your stats"
 			}, {
+				name: "!help crates",
+				value: "Displays commands regarding crates"
+			}]
+		}});
+	}
+	
+	//Crates help
+	if (strmsg === '!help crates') {
+		channel.send({embed: {
+			color: 3447003,
+			author: {
+				name: client.user.username,
+				icon_url: client.user.avatarURL
+			},
+			title: "Commands",
+			fields: [{
 				name: "!crates",
 				value: "Displays your crates"
 			}, {
