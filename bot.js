@@ -3,8 +3,6 @@
 	- upgradable farm
 	- hm against someone <player chooses word
 	- blackjack
-	- bal <player
-	- level <player
 	- leveltop, messagetop
 	- shop? <level/bal required
 	- xp till level up
