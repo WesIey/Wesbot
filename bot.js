@@ -1554,14 +1554,14 @@ client.on('message', msg => {
 		if (msg.author == '<@323890009696370688>') {
 			User.find({}, function (err, users) {
 				for (var i = 0, len = users.length; i < len; i++) {
-					users[i].Keys = 0;
-					users[i].CCones = 5;
-					users[i].CCtwos = 5;
-					users[i].CCthrees = 5;
-					users[i].CCfours = 5;
+					//users[i].Keys = 0;
+					users[i].CCones = users[i].CCones + 5;
+					users[i].CCtwos = users[i].CCtwos + 5;
+					users[i].CCthrees = users[i].CCthrees + 5;
+					users[i].CCfours = users[i].CCfours + 5;
 					users[i].save();
 				}
-				channel.send(":white_check_mark: Done");
+				channel.send(":white_check_mark: everyone has been given 5 crates of each type");
 			});
 		}
 		else {
