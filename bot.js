@@ -1555,10 +1555,10 @@ client.on('message', msg => {
 			User.find({}, function (err, users) {
 				for (var i = 0, len = users.length; i < len; i++) {
 					users[i].Keys = 0;
-					users[i].CCones = 0;
-					users[i].CCtwos = 0;
-					users[i].CCthrees = 0;
-					users[i].CCfours = 0;
+					users[i].CCones = 5;
+					users[i].CCtwos = 5;
+					users[i].CCthrees = 5;
+					users[i].CCfours = 5;
 					users[i].save();
 				}
 				channel.send(":white_check_mark: Done");
