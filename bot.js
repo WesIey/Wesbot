@@ -1447,16 +1447,16 @@ client.on('message', msg => {
 			},
 			title: "Commands",
 			fields: [{
-				name: "!hl <bet> :arrow_up::arrow_down:",
+				name: ":arrow_up::arrow_down: !hl <bet>",
 				value: "Starts a game of higher-lower"
 			}, {
-				name: "!insult <@user> :point_right::ok_hand:",
+				name: ":point_right::ok_hand: !insult <@user>",
 				value: "Insults the mentioned user"
 			}, {
-				name: "!bal :moneybag:",
+				name: ":moneybag: !bal",
 				value: "Displays your balance"
 			}, {
-				name: "!baltop :moneybag:",
+				name: ":moneybag: !baltop",
 				value: "Displays top 5 balances"
 			}, {
 				name: "!hf <@user> <bet>",
@@ -1471,7 +1471,7 @@ client.on('message', msg => {
 				name: "!stats",
 				value: "Displays your stats"
 			}, {
-				name: "!help crates :card_box:",
+				name: ":card_box: !help crates",
 				value: "Displays commands regarding crates"
 			}]
 		}});
@@ -1487,16 +1487,16 @@ client.on('message', msg => {
 			},
 			title: "Crate commands",
 			fields: [{
-				name: "!crates :card_box:",
+				name: ":card_box: !crates",
 				value: "Displays your crates"
 			}, {
-				name: "!crate open <name> :outbox_tray:",
+				name: ":outbox_tray: !crate open <name>",
 				value: "Opens crate"
 			}, {
-				name: "!keys :key:",
+				name: ":key: !keys",
 				value: "Displays your keys"
 			}, {
-				name: "!keys buy <amount> :key:",
+				name: ":key: !keys buy <amount>",
 				value: "Buys keys"
 			}]
 		}});
