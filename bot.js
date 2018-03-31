@@ -1556,7 +1556,8 @@ client.on('message', msg => {
 	res = strmsg.match('!test');
 	if (res == '!test') {
 		channel.send('test');
-		channel.send(Date().getTime());
+		var now = Date();
+		channel.send(now.getTime());
 	}
 	
 	//OP
