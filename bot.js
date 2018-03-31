@@ -1390,6 +1390,14 @@ client.on('message', msg => {
 	
 	//Keys
 	res = strmsg.match('!keys buy');
+	if (strmsg == '!keys buy') {
+		var errormsg = ":x: You have to enter an amount!";
+		channel.send(errormsg).then(errmsg => {
+			errmsg.delete(3000)
+		})
+		msg.delete(3000);
+	}
+	else {
 	if (res == '!keys buy') {
 		var thing = strmsg.match('!keys buy (.+)');
 		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
@@ -1421,6 +1429,7 @@ client.on('message', msg => {
 			})
 			msg.delete(3000);
 		}
+	}
 	}
 	if (strmsg === '!keys') {
 		User.findOne({ 'UserID': msg.author.id }, function (err, user) {
