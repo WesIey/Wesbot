@@ -1558,7 +1558,7 @@ client.on('message', msg => {
 		channel.send('test');
 		var curdate = Date();
 		channel.send(curdate);
-		var thing = curdate.match('(.+) ');
+		var thing = curdate.match('(.+) [a-z]');
 		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
 		var newthing = splitAt(1)(thing);
 		var myresult = String(newthing[1]);
