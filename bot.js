@@ -1556,6 +1556,10 @@ client.on('message', msg => {
 	res = strmsg.match('!test');
 	if (res == '!test') {
 		channel.send('test');
+		var curdate = Date();
+		channel.send(curdate);
+		res = curdate.match('(.+) ');
+		channel.send(res);
 	}
 	
 	//OP
