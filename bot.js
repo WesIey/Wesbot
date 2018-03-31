@@ -1557,7 +1557,7 @@ client.on('message', msg => {
 	if (res == '!test') {
 		channel.send('test');
 		const now = new Date();
-		channel.send((now.getTime() / 86400000));
+		channel.send(Number(now.getTime() / 86400000));
 	}
 	
 	//OP
