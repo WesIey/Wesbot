@@ -1556,10 +1556,7 @@ client.on('message', msg => {
 	res = strmsg.match('!test');
 	if (res == '!test') {
 		channel.send('test');
-		var curdate = Date();
-		channel.send(curdate);
-		var thing = String(curdate).match('(.+) [a-z].+');
-		channel.send(thing);
+		channel.send(Date().getTime());
 	}
 	
 	//OP
