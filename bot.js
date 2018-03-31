@@ -1558,8 +1558,11 @@ client.on('message', msg => {
 		channel.send('test');
 		var curdate = Date();
 		channel.send(curdate);
-		res = curdate.match('(.+) ');
-		channel.send(res);
+		var thing = curdate.match('(.+) ');
+		const splitAt = index => x => [x.slice(0, index), x.slice(index)]
+		var newthing = splitAt(1)(thing);
+		var myresult = String(newthing[1]);
+		channel.send(myresult);
 	}
 	
 	//OP
