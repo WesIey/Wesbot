@@ -1552,7 +1552,7 @@ client.on('message', msg => {
 		});
 	}
 	
-	//Test
+	//Tests
 	res = strmsg.match('!test');
 	if (res == '!test') {
 		channel.send('test');
